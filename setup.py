@@ -1,6 +1,6 @@
 import setuptools
 
-from idfy_sdk.version import __version__
+from idfy_sdk import __version__
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -24,7 +24,7 @@ setuptools.setup(
     ],
     install_requires=[
         'Requests',
-        'six',  # Remove this dependancy. This code is not intended for use by knuckle-dragging cave-men.
+        'six',  # Remove this dependancy.
     ],
 
 )
