@@ -1,5 +1,5 @@
 from idfy_sdk.idfy_configuration import IdfyConfiguration as config
-from idfy_sdk.idfy_configuration import urls as urls
+import idfy_sdk.urls as urls
 from idfy_sdk.services.IdfyBaseService import IdfyBaseService
 import idfy_sdk.models as models
 
