@@ -27,9 +27,9 @@ deploy:
     on:
       tags: true
   # Push NuGet package to nuget.org on new version
-  - provider: script  
-    skip_cleanup: true
-    script: dotnet nuget push src/Idfy.SDK/bin/Release/Idfy.SDK.* --api-key $NUGET_APIKEY --source https://www.nuget.org/api/v2/package
+  - provider: pypi
+    user: $PYPI_USERNAME
+    password: $PYPI_PASSWORD
     on:
       tags: true
 
