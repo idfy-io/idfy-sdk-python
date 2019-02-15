@@ -21,7 +21,9 @@ before_install:
     unzip "idfy-mock-server/idfy-mock-server_${IDFY_MOCK_SERVER_VERSION}.zip" -d "idfy-mock-server/idfy-mock-server_${IDFY_MOCK_SERVER_VERSION}/"
     dotnet "idfy-mock-server/idfy-mock-server_${IDFY_MOCK_SERVER_VERSION}/Idfy.MockServer.dll" &
 install:
-  - python3 -m pip install --upgrade setuptools wheel
+  - pip install pipenv
+  - pipenv install
+  - pipenv install --upgrade setuptools wheel
   - python3 setup.py sdist bdist_wheel
 
 script:
