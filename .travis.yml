@@ -23,7 +23,7 @@ before_install:
 install:
   - pip install pipenv
   - pipenv install
-  - pipenv install --upgrade setuptools wheel
+  - pipenv install setuptools wheel
   - python3 setup.py sdist bdist_wheel
 
 script:
