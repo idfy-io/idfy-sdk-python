@@ -1,5 +1,6 @@
 import asyncio 
 import functools
+import sys
 
 from idfy_sdk.idfy_configuration import IdfyConfiguration as config
 from idfy_sdk.services.IdfyBaseService import IdfyBaseService
@@ -16,7 +17,11 @@ class AdminService(IdfyBaseService):    #TODO: add comments to delimit the diffe
         url = config.BaseUrl + urls.Account
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model=models.Account))
         return self.Get(url, model=models.Account)
     
@@ -26,7 +31,11 @@ class AdminService(IdfyBaseService):    #TODO: add comments to delimit the diffe
         url = config.BaseUrl + urls.Account
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Put, url, model=models.Account, data=account_update_options))
         return self.Put(url, model=models.Account, data=account_update_options)
     
@@ -35,7 +44,11 @@ class AdminService(IdfyBaseService):    #TODO: add comments to delimit the diffe
         url = config.BaseUrl + urls.Account
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Post, url, model=models.Account, data=account_create_options))
         return self.Post(url, model=models.Account, data=account_create_options)
     
@@ -44,7 +57,11 @@ class AdminService(IdfyBaseService):    #TODO: add comments to delimit the diffe
         url = config.BaseUrl + urls.Account + "/disable"
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Post, url))
         return self.Post(url)
     
@@ -79,7 +96,11 @@ class AdminService(IdfyBaseService):    #TODO: add comments to delimit the diffe
         url = config.BaseUrl + urls.Account + "/list"
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[AccountListItem]', params=params))
         return self.Get(url, model='list[AccountListItem]', params=params)
     
@@ -88,7 +109,11 @@ class AdminService(IdfyBaseService):    #TODO: add comments to delimit the diffe
         url = config.BaseUrl + urls.Account + '/list/names'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[AccountNameItem]'))
         return self.Get(url, model='list[AccountNameItem]')
     
@@ -97,7 +122,11 @@ class AdminService(IdfyBaseService):    #TODO: add comments to delimit the diffe
         url = config.BaseUrl + urls.Dealer + '/' + dealer_id
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model=models.Dealer))
         return self.Get(url, model=models.Dealer)
 
@@ -106,7 +135,11 @@ class AdminService(IdfyBaseService):    #TODO: add comments to delimit the diffe
         url = config.BaseUrl + urls.Dealer + '/' + dealer_id
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Post, url, model=models.Dealer, data=dealer))
         return self.Post(url, model=models.Dealer, data=dealer)
 
@@ -115,7 +148,11 @@ class AdminService(IdfyBaseService):    #TODO: add comments to delimit the diffe
         url = config.BaseUrl + urls.Dealer + '/' + dealer_id + '/accounts'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[AccountListItem]'))
         return self.Get(url, model='list[AccountListItem]')
             
@@ -134,7 +171,11 @@ class AdminService(IdfyBaseService):    #TODO: add comments to delimit the diffe
         url = config.BaseUrl + urls.Admin + "/invoice"
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[Transaction]', params=params))
         return self.Get(url, model='list[Transaction]', params=params)
         
@@ -143,7 +184,11 @@ class AdminService(IdfyBaseService):    #TODO: add comments to delimit the diffe
         url = config.BaseUrl + urls.Template
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[PdfTemplateListItem]'))
         return self.Get(url, model='list[PdfTemplateListItem]')
     
@@ -152,7 +197,11 @@ class AdminService(IdfyBaseService):    #TODO: add comments to delimit the diffe
         url = config.BaseUrl + urls.Template
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Post, url, model=models.PdfTemplate, data=pdf_template_options))
         return self.Post(url, model=models.PdfTemplate, data=pdf_template_options)
     
@@ -162,7 +211,11 @@ class AdminService(IdfyBaseService):    #TODO: add comments to delimit the diffe
         url = config.BaseUrl + urls.Template + '/' + id
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model=models.PdfTemplate))
         return self.Get(url, model=models.PdfTemplate)
     
@@ -171,7 +224,11 @@ class AdminService(IdfyBaseService):    #TODO: add comments to delimit the diffe
         url = config.BaseUrl + urls.Template + '/' + id
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Put, url, model=models.PdfTemplate, data=pdf_template_options))
         return self.Put(url, model=models.PdfTemplate, data=pdf_template_options)
     
@@ -180,7 +237,11 @@ class AdminService(IdfyBaseService):    #TODO: add comments to delimit the diffe
         url = config.BaseUrl + urls.Template + '/' + id
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Delete, url))
         return self.Delete(url)
     

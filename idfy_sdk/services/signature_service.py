@@ -1,5 +1,6 @@
 import asyncio
 import functools
+import sys
 
 from idfy_sdk.idfy_configuration import IdfyConfiguration as config
 from idfy_sdk import urls as urls
@@ -18,7 +19,11 @@ class SignatureService(IdfyBaseService):
         url = base + urls.SignatureDocuments + '/' + documentId
 
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model=models.Document))
         return self.Get(url, model=models.Document)
 
@@ -26,7 +31,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments
 
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Post, url, model=models.Document, data=options))
         return self.Post(url, model=models.Document, data=options)
     
@@ -34,7 +43,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id
 
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Patch, url, model=models.Document, data=options))
         return self.Patch(url, model=models.Document, data=options)
     
@@ -42,7 +55,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/cancel'
 
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Post, url, params=reason))
         self.Post(url, params=reason)
     
@@ -50,7 +67,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/status'
 
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model=models.DocumentStatusSummary))
         return self.Get(url, model=models.DocumentStatusSummary)
     
@@ -58,7 +79,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/summary'
 
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model=models.DocumentSummary))
         return self.Get(url, model=models.DocumentSummary)
     
@@ -98,7 +123,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/summary'
 
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model=models.CollectionWithPagingDocumentSummary, params=params))
         return self.Get(url, model=models.CollectionWithPagingDocumentSummary, params=params)
     
@@ -108,7 +137,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/signers/' + signer_id
 
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model=models.Signer))
         return self.Get(url, model=models.Signer)
     
@@ -117,7 +150,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/signers'
 
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Post, url, model=models.Signer, data=signer_options))
         return self.Post(url, model=models.Signer, data=signer_options)
     
@@ -126,7 +163,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/signers/' + signer_id
 
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Patch, url, model=models.Signer, data=signer_options))
         return self.Patch(url, model=models.Signer, data=signer_options)
     
@@ -135,7 +176,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/signers/' + signer_id
 
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Delete, url))
         self.Delete(url)
     
@@ -144,7 +189,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/signers/'
 
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[Signer]'))
         return self.Get(url, model='list[Signer]') # I have no idea if this will handle a list of an arbitrary number of "Signers" or if it just accepts a list of exactly one "Signer"
 
@@ -155,7 +204,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/attachments/' + attachment_id
 
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model=models.Attachment))
         return self.Get(url, model=models.Attachment)
     
@@ -164,7 +217,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/attachments/'
 
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Post, url, model=models.Attachment, data=data))
         return self.Post(url, model=models.Attachment, data=data)
     
@@ -173,7 +230,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/attachments/' + attachment_id
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Patch, url, model=models.Attachment, data=data))
         return self.Patch(url, model=models.Attachment, data=data)
 
@@ -182,7 +243,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/attachments/' + attachment_id
 
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Delete, url))
         return self.Delete(url)
     
@@ -192,7 +257,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/attachments'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[Attachment]'))
         return self.Get(url, model='list[Attachment]')
     
@@ -201,7 +270,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/files'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='file', params=file_format))
         return self.Get(url, model='file', params=file_format)
 
@@ -210,7 +283,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/files/signers/' + signer_id
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='file', params=file_format))
         return self.Get(url, model='file', params=file_format)
     
@@ -219,7 +296,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/files/attachments/' + attachment_id
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='file', params=file_format))
         return self.Get(url, model='file', params=file_format)
     
@@ -228,7 +309,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/files/attachments/' + attachment_id + '/signers/' + signer_id
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='file', params=file_format))
         return self.Get(url, model='file', params=file_format)
     
@@ -237,7 +322,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/notifications'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[NotificationLogItem]'))
         return self.Get(url, model='list[NotificationLogItem]')
 
@@ -246,7 +335,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/' + document_id + '/notifications/reminder'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Post, url, model=models.ManualReminder, data=manual_reminder))
         return self.Post(url, model=models.ManualReminder, data=manual_reminder)
     
@@ -255,7 +348,11 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/themes/list/themes'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[ColorTheme]'))
         return self.Get(url, model='list[ColorTheme]')
     
@@ -264,6 +361,10 @@ class SignatureService(IdfyBaseService):
         url = config.BaseUrl + urls.SignatureDocuments + '/themes/list/spinners'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[Spinner]'))
         return self.Get(url, model='list[Spinner]')
