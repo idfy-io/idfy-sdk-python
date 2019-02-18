@@ -1,10 +1,10 @@
-from idfy_sdk.idfy_configuration import IdfyConfiguration as config
-from idfy_sdk.services.IdfyBaseService import IdfyBaseService
-import idfy_sdk.urls as urls
-import idfy_sdk.models as models
-
 import asyncio 
 import functools
+
+from idfy_sdk.idfy_configuration import IdfyConfiguration as config
+from idfy_sdk.services.IdfyBaseService import IdfyBaseService
+from idfy_sdk import urls as urls
+from idfy_sdk import models as models
 
 class AdminService(IdfyBaseService):    #TODO: add comments to delimit the different sections
     def __init__(self, client_id: str=None, client_secret: str=None, scopes: list=None):

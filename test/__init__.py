@@ -1,15 +1,12 @@
-import sys
+#import sys
 #This should probably be removed, the script is supposed to be in the Python path if you want to run it
-sys.path.append('E:\Code\Python-SDK\Python-SDK')    # pylint: disable=W1401
+#sys.path.append('E:\Code\Python-SDK\Python-SDK')    # pylint: disable=W1401
 
 import requests
 
-import idfy_sdk.urls as urls
+from idfy_sdk import urls as urls
 from idfy_sdk.idfy_configuration import IdfyConfiguration as config
 from idfy_sdk.services.identification_service import IdentificationService
-
-import requests
-
 
 config.BaseUrl = urls.TestBaseUrl   #No option to dynamically set the port for the mock server yet.
 config.OAuthBaseUrl = urls.TestBaseUrl

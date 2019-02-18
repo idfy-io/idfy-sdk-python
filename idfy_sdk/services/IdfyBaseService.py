@@ -18,7 +18,6 @@ from idfy_sdk.infrastructure.serialization import deserialize, serialize
 from idfy_sdk.infrastructure import http_requests as http, AuthManager as auth
 
 
-
 class IdfyBaseService(object):
     def __init__(self, client_id=None, client_secret=None, scopes=None): # Should only the creation of the service fail if the parameters are invalid, or the whole process?
 

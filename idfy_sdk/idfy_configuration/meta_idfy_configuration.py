@@ -1,4 +1,4 @@
-import idfy_sdk.urls as urls
+from idfy_sdk import urls as urls
 from idfy_sdk.version import __version__
 
 class MetaIdfyConfiguration(type):

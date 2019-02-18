@@ -3,8 +3,8 @@ from requests.auth import HTTPBasicAuth
 
 from idfy_sdk.idfy_configuration import IdfyConfiguration as config
 from idfy_sdk.infrastructure.serialization import deserialize
-import idfy_sdk.infrastructure.http_requests as http
-import idfy_sdk.urls as urls
+from idfy_sdk.infrastructure import http_requests as http
+from idfy_sdk import urls as urls
 
 
 def Authorize():
