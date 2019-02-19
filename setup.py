@@ -1,13 +1,13 @@
 import setuptools
 
-from idfy_sdk import __version__
+from idfy_sdk import version
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="idfy_sdk",
-    version=__version__,
+    version=version,
     author="Idfy",
     author_email="support@idfy.io",
     description="SDK for using the Idfy API in Python",

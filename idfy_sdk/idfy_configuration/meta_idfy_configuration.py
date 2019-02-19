@@ -1,5 +1,5 @@
 from idfy_sdk import urls as urls
-from idfy_sdk.version import __version__
+from idfy_sdk.version import version
 
 class MetaIdfyConfiguration(type):
 
@@ -29,7 +29,7 @@ class MetaIdfyConfiguration(type):
     
     @property
     def SdkVersion(self):
-        return __version__
+        return version
 
     @property
     def ClientId(self):
