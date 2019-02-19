@@ -1,14 +1,14 @@
-import idfy_sdk as python
-
 import asyncio
 import functools
 
 import unittest
 import unittest.mock
 
+import idfy_sdk
+
 params = {'unit': 'test'}
 
-@unittest.mock.patch('idfy_sdk.services.validation_service.ValidationService', autospec=True, wrap=python.ValidationService)
+@unittest.mock.patch('idfy_sdk.services.validation_service.ValidationService', autospec=True, wrap=idfy_sdk.services.ValidationService)
 class TestValidation(unittest.TestCase):
     def test_validate_sdo(self, mock_service):
     
@@ -24,7 +24,7 @@ class TestValidation(unittest.TestCase):
         self.assertIsNotNone(data)
         mock_service.parse_and_validate_sdo.assert_called_once_with(parse_sdo_request=params)
 
-@unittest.mock.patch('idfy_sdk.services.validation_service.ValidationService', autospec=True, wrap=python.ValidationService)
+@unittest.mock.patch('idfy_sdk.services.validation_service.ValidationService', autospec=True, wrap=idfy_sdk.services.ValidationService)
 class TestValidationAsync(unittest.TestCase):
     def setUp(self):
         self.loop = asyncio.new_event_loop()

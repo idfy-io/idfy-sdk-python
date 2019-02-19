@@ -1,5 +1,3 @@
-import idfy_sdk as python
-
 import asyncio
 import functools
 
@@ -8,7 +6,9 @@ import unittest.mock
 
 params = {'unit': 'test'}
 
-@unittest.mock.patch('idfy_sdk.services.jwt_service.JwtService', autospec=True, wrap=python.JwtService)
+import idfy_sdk
+
+@unittest.mock.patch('idfy_sdk.services.jwt_service.JwtService', autospec=True, wrap=idfy_sdk.services.JwtService)
 class TestJwt(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -25,7 +25,7 @@ class TestJwt(unittest.TestCase):
         self.assertIsNotNone(data)
         mock_service.validate.assert_called_once_with(jwt_validation_request=params)
     
-@unittest.mock.patch('idfy_sdk.services.jwt_service.JwtService', autospec=True, wrap=python.JwtService)
+@unittest.mock.patch('idfy_sdk.services.jwt_service.JwtService', autospec=True, wrap=idfy_sdk.services.JwtService)
 class TestJwtAsync(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

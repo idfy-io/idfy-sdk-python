@@ -3,15 +3,16 @@ import functools
 import unittest
 import unittest.mock
 
-import idfy_sdk as python    # Probably don't need to import the whole python SDK
 from test.base_test import BaseTest
 from idfy_sdk.version import version
+
+import idfy_sdk
 
 class TestAdmin(BaseTest):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.admin_service = python.AdminService()
+        cls.admin_service = idfy_sdk.services.AdminService()
     
     def test_get_account(self):
         data = self.admin_service.get_account()
@@ -125,7 +126,7 @@ class TestAdminAsync(BaseTest):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.admin_service = python.AdminService() #Probably don't need to import the whole python SDK if this is the only part of it I need in this module
+        cls.admin_service = idfy_sdk.services.AdminService()
 
     def setUp(self):
         super().setUp()

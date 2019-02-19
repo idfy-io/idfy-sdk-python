@@ -1,4 +1,3 @@
-import idfy_sdk as python
 from test.base_test import BaseTest
 
 import asyncio

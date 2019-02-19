@@ -1,13 +1,14 @@
 import asyncio
 import functools
 
-import idfy_sdk as python
 import unittest
 import unittest.mock
 
+import idfy_sdk
+
 params = {'unit': 'test'}
 
-@unittest.mock.patch('idfy_sdk.services.merchant_sign_service.MerchantSignService', autospec=True, wrap=python.MerchantSignService)
+@unittest.mock.patch('idfy_sdk.services.merchant_sign_service.MerchantSignService', autospec=True, wrap=idfy_sdk.services.MerchantSignService)
 class TestMerchantSign(unittest.TestCase):
     def test_create_merchant_signature(self, mock_service):
     
@@ -37,7 +38,7 @@ class TestMerchantSign(unittest.TestCase):
         self.assertIsNotNone(data)
         mock_service.get_pades.assert_called_once_with(signed_document_id="1")
 
-@unittest.mock.patch('idfy_sdk.services.merchant_sign_service.MerchantSignService', autospec=True, wrap=python.MerchantSignService)
+@unittest.mock.patch('idfy_sdk.services.merchant_sign_service.MerchantSignService', autospec=True, wrap=idfy_sdk.services.MerchantSignService)
 class TestMerchantSignAsync(unittest.TestCase):
     def setUp(self):
         self.loop = asyncio.new_event_loop()

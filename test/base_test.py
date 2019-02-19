@@ -1,7 +1,6 @@
 from unittest import TestCase
 import unittest.mock
 
-import idfy_sdk as python
 from idfy_sdk.infrastructure import http_requests as http, urls as urls
 
 class BaseTest(TestCase):

@@ -1,11 +1,10 @@
 import asyncio
 import functools
 
-import idfy_sdk as python
 import unittest
 import unittest.mock
 """
-@unittest.mock.patch('idfy_sdk.services.notification_service.NotificationService', autospec=True, wrap=python.NotificationService)
+@unittest.mock.patch('idfy_sdk.services.notification_service.NotificationService', autospec=True, wrap=idfy_sdk.services.NotificationService)
 class TestNotification(unittest.TestCase):
     def test_list_unhandled_events(self, mock_service):
 
@@ -105,7 +104,7 @@ class TestNotification(unittest.TestCase):
         self.assertIsNotNone(data)
         mock_service.list_webhook_deliveries.assert_called_once_with(id="1")
 
-@unittest.mock.patch('idfy_sdk.services.notification_service.NotificationService', autospec=True, wrap=python.NotificationService)
+@unittest.mock.patch('idfy_sdk.services.notification_service.NotificationService', autospec=True, wrap=idfy_sdk.services.NotificationService)
 class TestNotificationAsync(unittest.TestCase):
     def setUp(self):
         self.loop = asyncio.new_event_loop()

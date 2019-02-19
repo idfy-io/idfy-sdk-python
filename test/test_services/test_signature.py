@@ -2,16 +2,16 @@ import asyncio
 import unittest
 import unittest.mock
 
-import idfy_sdk as python
 from test.base_test import BaseTest
 from idfy_sdk.version import version
+
+import idfy_sdk
 
 class TestSignature(BaseTest):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.signature_service = python.SignatureService() #Probably don't need to import the whole python SDK
-    #Documents
+        cls.signature_service = idfy_sdk.services.SignatureService()
     def test_get_document(self):
         data = self.signature_service.get_document('123')
 
@@ -216,7 +216,7 @@ class TestSignatureAsync(BaseTest):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.signature_service = python.SignatureService()
+        cls.signature_service = idfy_sdk.services.SignatureService()
 
     def setUp(self):
         super().setUp()
