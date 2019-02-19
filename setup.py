@@ -1,6 +1,6 @@
 import setuptools
 
-from idfy_sdk import version
+from idfy_sdk.version import version
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
