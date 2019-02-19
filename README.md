@@ -11,6 +11,7 @@ The package is available on PyPI. Use of Pipenv is recommended(https://pipenv.re
     pipenv install idfy-sdk-python
 
 
+
 ## Documentation
 - [Idfy REST API Reference](https://developer.idfy.io/api)
 - [Idfy Developer Documentation](https://docs.idfy.io)
