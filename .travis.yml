@@ -37,6 +37,7 @@ deploy:
     name: $TRAVIS_TAG
     on:
       tags: true
+      python: 3.7
   # Push NuGet package to nuget.org on new version
   - provider: pypi
     user: $PYPI_USERNAME
