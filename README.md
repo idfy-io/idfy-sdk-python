@@ -5,7 +5,7 @@ A Python SDK for simple integration with the Idfy REST API.
 
 Supports Python 3.5 and above. (3.5, 3.6, 3.7)
 
-Using the async methods will make the program no longer run strictly single-threaded. The SDK is also able to make use of some of the features introduced to the asyncio module in Python 3.7, so running the code on that version or later will yeald slight improvemets to efficiency and robustness when using async methods.
+Using the async methods will make the program no longer run strictly single-threaded. The SDK is also able to make use of some of the features introduced to the asyncio module in Python 3.7, so running the code on that version or later will yield slight improvemets to efficiency and robustness when using async methods.
 
 ## Installation
 The package is available on PyPI. Use of Pipenv is recommended(https://pipenv.readthedocs.io).
