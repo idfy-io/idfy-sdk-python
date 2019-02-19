@@ -1,7 +1,39 @@
-# Python-SDK
+# Idfy Python SDK
+[![Build Status](https://travis-ci.org/idfy-io/idfy-sdk-python.svg?branch=master)](https://travis-ci.org/idfy-io/idfy-sdk-python)
 
-Python SDK for using the Idfy API.
+A Python SDK for simple integration with the Idfy REST API.
 
-If you make use of the _async_ methods, it will no longer be strictly single-threaded.
+Supports Python 3.5 and above. (3.5, 3.6, 3.7)
 
-This is still in development, but will *hopefully* be finished soon.
+## Installation
+The package is available on PyPI. Use of Pipenv is recommended(https://pipenv.readthedocs.io).
+
+    pipenv install idfy-sdk-python
+
+
+## Documentation
+- [Idfy REST API Reference](https://developer.idfy.io/api)
+- [Idfy Developer Documentation](https://docs.idfy.io)
+
+
+## Sample Usage
+The example below shows how to get the details of a specific document.
+
+```python
+# Import the SDK into your module
+import idfy_sdk
+
+# Set your credentials and desired scopes
+idfy_sdk.IdfyConfiguration.set_client_credentials("Your client ID here", "Your client secret here", ["A list containing all your desired scopes (see documentation)"])
+
+# Make a call to retrieve the document
+service = idfy_sdk.services.SignatureService()
+
+document_info = service.get_document(document_id)
+
+print(document_info)
+```
+
+## Support
+- Open an [issue](https://github.com/idfy-io/idfy-sdk-python/issues) to report bugs or submit feature requests.
+- For other support requests, visit our [support page](https://support.idfy.io) or contact us at [support@idfy.io](mailto:support@idfy.io).
