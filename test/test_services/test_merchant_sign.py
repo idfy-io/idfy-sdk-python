@@ -1,83 +1,92 @@
 import asyncio
-import functools
-
 import unittest
 import unittest.mock
 
+from test.base_test import BaseTest
+from idfy_sdk.version import version
+
 import idfy_sdk
 
-params = {'unit': 'test'}
+class TestMerchantSign(BaseTest):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.merchant_sign_service = idfy_sdk.services.MerchantSignService()
 
-@unittest.mock.patch('idfy_sdk.services.merchant_sign_service.MerchantSignService', autospec=True, wrap=idfy_sdk.services.MerchantSignService)
-class TestMerchantSign(unittest.TestCase):
-    def test_create_merchant_signature(self, mock_service):
-    
-        data = mock_service.create_merchant_signature(sign_request=params)
-        
-        self.assertIsNotNone(data)
-        mock_service.create_merchant_signature.assert_called_once_with(sign_request=params)
-    
-    def test_get_transaction(self, mock_service):
-    
-        data = mock_service.get_transaction(transaction_id="1")
-        
-        self.assertIsNotNone(data)
-        mock_service.get_transaction.assert_called_once_with(transaction_id="1")
-    
-    def test_list_transactions(self, mock_service):
+    def test_create_merchant_signature(self):
+        data = self.merchant_sign_service.create_merchant_signature(sign_request=self.params)
 
-        data = mock_service.list_transactions()
-        
         self.assertIsNotNone(data)
-        mock_service.list_transactions.assert_called_once_with()
-    
-    def test_get_pades(self, mock_service):
-    
-        data = mock_service.get_pades(signed_document_id="1")
-        
-        self.assertIsNotNone(data)
-        mock_service.get_pades.assert_called_once_with(signed_document_id="1")
+        #self.AssertEqual()
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/merchant/signature', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
 
-@unittest.mock.patch('idfy_sdk.services.merchant_sign_service.MerchantSignService', autospec=True, wrap=idfy_sdk.services.MerchantSignService)
-class TestMerchantSignAsync(unittest.TestCase):
+    def test_get_transaction(self):
+        data = self.merchant_sign_service.get_transaction(transaction_id="1")
+
+        self.assertIsNotNone(data)
+        #self.AssertEqual()
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/merchant/signature/1', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+
+    def test_list_transactions(self):
+        data = self.merchant_sign_service.list_transactions()
+
+        self.assertIsNotNone(data)
+        #self.AssertEqual()
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/merchant/signature/list', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params={'oauthClientId': None, 'fromDate': None, 'to_date': None})
+
+    def test_get_pades(self):
+        data = self.merchant_sign_service.get_pades(signed_document_id="1")
+
+        self.assertIsNotNone(data)
+        #self.AssertEqual()
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/merchant/pades/1', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+
+
+class TestMerchantSignAsync(BaseTest):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.merchant_sign_service = idfy_sdk.services.MerchantSignService()
+
     def setUp(self):
+        super().setUp()
         self.loop = asyncio.new_event_loop()
         asyncio.set_event_loop(None)
     
     def tearDown(self):
         self.loop.close()
 
-    def test_create_merchant_signature_async(self, mock_service):
+    def test_create_merchant_signature_async(self):
         async def func():
-            return mock_service.create_merchant_signature(sign_request=params, threaded=True)
+            return await self.merchant_sign_service.create_merchant_signature(sign_request=self.params, threaded=True)
         data = self.loop.run_until_complete(func())
 
         
         self.assertIsNotNone(data)
-        mock_service.create_merchant_signature.assert_called_once_with(sign_request=params, threaded=True)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/merchant/signature', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
     
-    def test_get_transaction(self, mock_service):
+    def test_get_transaction(self):
         async def func():
-            return mock_service.get_transaction(transaction_id="1", threaded=True)
+            return await self.merchant_sign_service.get_transaction(transaction_id="1", threaded=True)
         data = self.loop.run_until_complete(func())
 
         
         self.assertIsNotNone(data)
-        mock_service.get_transaction.assert_called_once_with(transaction_id="1", threaded=True)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/merchant/signature/1', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
     
-    def test_list_transactions(self, mock_service):
+    def test_list_transactions(self):
         async def func():
-            return mock_service.list_transactions(threaded=True)
+            return await self.merchant_sign_service.list_transactions(threaded=True)
         data = self.loop.run_until_complete(func())
 
         self.assertIsNotNone(data)
-        mock_service.list_transactions.assert_called_once_with(threaded=True)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/merchant/signature/list', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params={'oauthClientId': None, 'fromDate': None, 'to_date': None})
     
-    def test_get_pades(self, mock_service):
+    def test_get_pades(self):
         async def func():
-            return mock_service.get_pades(signed_document_id="1", threaded=True)
+            return await self.merchant_sign_service.get_pades(signed_document_id="1", threaded=True)
         data = self.loop.run_until_complete(func())
 
         
         self.assertIsNotNone(data)
-        mock_service.get_pades.assert_called_once_with(signed_document_id="1", threaded=True)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/merchant/pades/1', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)

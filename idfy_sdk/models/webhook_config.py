@@ -107,12 +107,12 @@ class WebhookConfig(object):
         :param delivery_logging: The delivery_logging of this WebhookConfig.  
         :type: str
         """
-        allowed_values = ["never", "failed", "always"]  
-        if delivery_logging not in allowed_values:
-            raise ValueError(
-                "Invalid value for `delivery_logging` ({0}), must be one of {1}"  
-                .format(delivery_logging, allowed_values)
-            )
+        #allowed_values = ["never", "failed", "always"]  
+        #if delivery_logging not in allowed_values:
+        #    raise ValueError(
+        #        "Invalid value for `delivery_logging` ({0}), must be one of {1}"  
+        #        .format(delivery_logging, allowed_values)
+        #    )
 
         self._delivery_logging = delivery_logging
 

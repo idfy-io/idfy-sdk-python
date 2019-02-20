@@ -61,12 +61,12 @@ class EventTypeInfo(object):
         :param id: The id of this EventTypeInfo.  
         :type: str
         """
-        allowed_values = ["document_before_deleted", "document_canceled", "document_created", "document_deleted", "document_expired", "document_email_opened", "document_form_partially_signed", "document_form_signed", "document_link_opened", "document_packaged", "document_partially_signed", "document_read", "document_signed"]  
-        if id not in allowed_values:
-            raise ValueError(
-                "Invalid value for `id` ({0}), must be one of {1}"  
-                .format(id, allowed_values)
-            )
+        #allowed_values = ["document_before_deleted", "document_canceled", "document_created", "document_deleted", "document_expired", "document_email_opened", "document_form_partially_signed", "document_form_signed", "document_link_opened", "document_packaged", "document_partially_signed", "document_read", "document_signed"]  
+        #if id not in allowed_values:
+        #    raise ValueError(
+        #        "Invalid value for `id` ({0}), must be one of {1}"  
+        #        .format(id, allowed_values)
+        #    )
 
         self._id = id
 

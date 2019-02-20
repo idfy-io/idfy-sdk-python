@@ -1,5 +1,6 @@
 import asyncio
 import functools
+import sys
 
 from idfy_sdk.idfy_configuration import IdfyConfiguration as config
 from idfy_sdk.services.IdfyBaseService import IdfyBaseService
@@ -15,7 +16,11 @@ class JwtService(IdfyBaseService):
         url = config.BaseUrl + urls.Jwt + '/validate'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Post, url, model=models.JwtValidationResponse, data=jwt_validation_request))
         return self.Post(url, model=models.JwtValidationResponse, data=jwt_validation_request)
     

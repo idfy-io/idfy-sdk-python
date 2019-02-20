@@ -1,50 +1,60 @@
 import asyncio
-import functools
-
 import unittest
 import unittest.mock
 
+from test.base_test import BaseTest
+from idfy_sdk.version import version
+
 import idfy_sdk
 
-params = {'unit': 'test'}
+class TestValidation(BaseTest):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.validation_service = idfy_sdk.services.ValidationService()
 
-@unittest.mock.patch('idfy_sdk.services.validation_service.ValidationService', autospec=True, wrap=idfy_sdk.services.ValidationService)
-class TestValidation(unittest.TestCase):
-    def test_validate_sdo(self, mock_service):
-    
-        data = mock_service.validate_sdo(validate_sdo_request=params)
-        
-        self.assertIsNotNone(data)
-        mock_service.validate_sdo.assert_called_once_with(validate_sdo_request=params)
-    
-    def test_parse_and_validate_sdo(self, mock_service):
-    
-        data = mock_service.parse_and_validate_sdo(parse_sdo_request=params)
-        
-        self.assertIsNotNone(data)
-        mock_service.parse_and_validate_sdo.assert_called_once_with(parse_sdo_request=params)
+    def test_validate_sdo(self):
+        data = self.validation_service.validate_sdo(validate_sdo_request=self.params)
 
-@unittest.mock.patch('idfy_sdk.services.validation_service.ValidationService', autospec=True, wrap=idfy_sdk.services.ValidationService)
-class TestValidationAsync(unittest.TestCase):
+        self.assertIsNotNone(data)
+        #self.AssertEqual()
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/validation/no/bankid/validate', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+
+
+    def test_parse_and_validate_sdo(self):
+        data = self.validation_service.parse_and_validate_sdo(parse_sdo_request=self.params)
+
+        self.assertIsNotNone(data)
+        #self.AssertEqual()
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/validation/no/bankid/parse', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+
+
+class TestValidationAsync(BaseTest):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.validation_service = idfy_sdk.services.ValidationService()
+
     def setUp(self):
+        super().setUp()
         self.loop = asyncio.new_event_loop()
         asyncio.set_event_loop(None)
     
     def tearDown(self):
         self.loop.close()
-
-    def test_validate_sdo_async(self, mock_service):
+    
+    def test_validate_sdo_async(self):
         async def func():
-            return mock_service.validate_sdo(validate_sdo_request=params, threaded=True)
+            return await self.validation_service.validate_sdo(validate_sdo_request=self.params, threaded=True)
         data = self.loop.run_until_complete(func())
             
         self.assertIsNotNone(data)
-        mock_service.validate_sdo.assert_called_once_with(validate_sdo_request=params, threaded=True)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/validation/no/bankid/validate', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
     
-    def test_parse_and_validate_sdo_async(self, mock_service):
+    def test_parse_and_validate_sdo_async(self):
         async def func():
-            return mock_service.parse_and_validate_sdo(parse_sdo_request=params, threaded=True)
+            return await self.validation_service.parse_and_validate_sdo(parse_sdo_request=self.params, threaded=True)
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        mock_service.parse_and_validate_sdo.assert_called_once_with(parse_sdo_request=params, threaded=True)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/validation/no/bankid/parse', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)

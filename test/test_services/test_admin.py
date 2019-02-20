@@ -28,7 +28,7 @@ class TestAdmin(BaseTest):
         #self.AssertEqual()
         self.mock_http.put.assert_called_once_with('http://localhost:5000/admin/account', data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
         
-    @unittest.skip("Mock server borken")
+    @unittest.skip("Mock server error")
     def test_create_account(self):
         data = self.admin_service.create_account(account_create_options=self.params)
 
@@ -36,7 +36,7 @@ class TestAdmin(BaseTest):
         #self.AssertEqual()
         self.mock_http.get.assert_called_once_with()
 
-    @unittest.skip("Mock server borken")
+    @unittest.skip("Mock server error")
     def test_disable_account(self):
         data = self.admin_service.disable_account()
 
@@ -155,7 +155,7 @@ class TestAdminAsync(BaseTest):
         #self.AssertEqual()
         self.mock_http.put.assert_called_once_with('http://localhost:5000/admin/account', data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
         
-    @unittest.skip("Mock server borken")
+    @unittest.skip("Mock server error")
     def test_create_account_async(self):
         async def func():
             return await self.admin_service.create_account(account_create_options=self.params, threaded=True)
@@ -164,7 +164,7 @@ class TestAdminAsync(BaseTest):
         self.assertIsNotNone(data)
         #mock_service.create_account.assert_called_once_with(account_create_options=self.params, threaded=True)
     
-    @unittest.skip("Mock server borken")
+    @unittest.skip("Mock server error")
     def test_disable_account_async(self):
         async def func():
             return await self.admin_service.disable_account(threaded=True)

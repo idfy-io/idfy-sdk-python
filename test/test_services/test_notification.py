@@ -1,227 +1,251 @@
 import asyncio
-import functools
-
 import unittest
 import unittest.mock
-"""
-@unittest.mock.patch('idfy_sdk.services.notification_service.NotificationService', autospec=True, wrap=idfy_sdk.services.NotificationService)
-class TestNotification(unittest.TestCase):
-    def test_list_unhandled_events(self, mock_service):
 
-        data = mock_service.list_unhandled_events()
-        
-        self.assertIsNotNone(data)
-        mock_service.list_unhandled_events.assert_called_once_with()
-    
-    def test_handle_event(self, mock_service):
-    
-        data = mock_service.handle_event(event_id="1")
-        
-        self.assertIsNotNone(data)
-        mock_service.handle_event.assert_called_once_with(event_id="1")
-    
-    def test_handle_multiple_events(self, mock_service):
-    
-        data = mock_service.handle_multiple_events(event_ids="1")
-        
-        self.assertIsNotNone(data)
-        mock_service.handle_multiple_events.assert_called_once_with(event_ids="1")
-    
-    def test_peek_events(self, mock_service):
+from test.base_test import BaseTest
+from idfy_sdk.version import version
 
-        data = mock_service.peek_events()
-        
-        self.assertIsNotNone(data)
-        mock_service.peek_events.assert_called_once_with()
-    
-    def test_clear_events(self, mock_service):
-    
-        data = mock_service.clear_events()
-        
-        self.assertIsNotNone(data)
-        mock_service.clear_events.assert_called_once_with()
+import idfy_sdk
 
-    def test_list_event_types(self, mock_service):
-    
-        data = mock_service.list_event_types()
-        
-        self.assertIsNotNone(data)
-        mock_service.list_event_types.assert_called_once_with()
-    
-    def test_mock_event(self, mock_service):
-    
-        data = mock_service.mock_event(mock_event_request=params)
-        
-        self.assertIsNotNone(data)
-        mock_service.mock_event.assert_called_once_with(mock_event_request=params)
-    
-    def test_get_webhook(self, mock_service):
-    
-        data = mock_service.get_webhook(id="1")
-        
-        self.assertIsNotNone(data)
-        mock_service.get_webhook.assert_called_once_with(id="1")
-    
-    def test_delete_webhook(self, mock_service):
-    
-        data = mock_service.delete_webhook(id="1")
-        
-        self.assertIsNotNone(data)
-        mock_service.delete_webhook.assert_called_once_with(id="1")
-    
-    def test_update_webhook(self, mock_service):
-    
-        data = mock_service.update_webhook(id="1", webhook_update_options=params)
-        
-        self.assertIsNotNone(data)
-        mock_service.update_webhook.assert_called_once_with(id="1", webhook_update_options=params)
-    
-    def test_list_webhooks(self, mock_service):
-    
-        data = mock_service.list_webhooks()
-        
-        self.assertIsNotNone(data)
-        mock_service.list_webhooks.assert_called_once_with()
+class TestNotification(BaseTest):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.notification_service = idfy_sdk.services.NotificationService()
 
-    def test_create_webhook(self, mock_service):
-    
-        data = mock_service.create_webhook(webhook_create_options=params)
-        
-        self.assertIsNotNone(data)
-        mock_service.create_webhook.assert_called_once_with(webhook_create_options=params)
-    
-    def test_ping_webhook(self, mock_service):
-    
-        data = mock_service.ping_webhook(id="1")
-        
-        self.assertIsNotNone(data)
-        mock_service.ping_webhook.assert_called_once_with(id="1")
-    
-    def test_list_webhook_deliveries(self, mock_service):
-    
-        data = mock_service.list_webhook_deliveries(id="1")
-        
-        self.assertIsNotNone(data)
-        mock_service.list_webhook_deliveries.assert_called_once_with(id="1")
+    def test_list_unhandled_events(self):
+        data = self.notification_service.list_unhandled_events()
 
-@unittest.mock.patch('idfy_sdk.services.notification_service.NotificationService', autospec=True, wrap=idfy_sdk.services.NotificationService)
-class TestNotificationAsync(unittest.TestCase):
+        self.assertIsNotNone(data)
+        #self.AssertEqual()
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/events', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params={'eventType': None, 'tags': None})
+
+
+    def test_handle_event(self):
+        data = self.notification_service.handle_event(event_id="1")
+
+        self.assertIsNotNone(data)
+        #self.AssertEqual()
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/1/handle', auth=None, data='null', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+
+
+    def test_handle_multiple_events(self):
+        data = self.notification_service.handle_multiple_events(event_ids="1")
+
+        self.assertIsNotNone(data)
+        #self.AssertEqual()
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/handle', auth=None, data='"1"', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+
+
+    def test_peek_events(self):
+        data = self.notification_service.peek_events()
+
+        self.assertIsNotNone(data)
+        #self.AssertEqual()
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/events/peek', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params={'eventType': None, 'tags': None})
+
+
+    def test_clear_events(self):
+        data = self.notification_service.clear_events()
+
+        self.assertIsNotNone(data)
+        #self.AssertEqual()
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/clear', auth=None, data='null', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+
+
+    def test_list_event_types(self):
+        data = self.notification_service.list_event_types()
+
+        self.assertIsNotNone(data)
+        #self.AssertEqual()
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/events/types', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+
+
+    def test_mock_event(self):
+        data = self.notification_service.mock_event(mock_event_request=self.params)
+
+        self.assertIsNotNone(data)
+        #self.AssertEqual()
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/mock', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+
+
+    def test_get_webhook(self):
+        data = self.notification_service.get_webhook(id="1")
+
+        self.assertIsNotNone(data)
+        #self.AssertEqual()
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/webhooks/1', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+
+
+    def test_delete_webhook(self):
+        data = self.notification_service.delete_webhook(id="1")
+
+        self.assertIsNone(data)
+        #self.AssertEqual()
+        self.mock_http.delete.assert_called_once_with('http://localhost:5000/notification/webhooks/1', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'})
+
+
+    def test_update_webhook(self):
+        data = self.notification_service.update_webhook(id="1", webhook_update_options=self.params)
+
+        self.assertIsNotNone(data)
+        #self.AssertEqual()
+        self.mock_http.patch.assert_called_once_with('http://localhost:5000/notification/webhooks/1', data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'})
+
+
+    def test_list_webhooks(self):
+        data = self.notification_service.list_webhooks()
+
+        self.assertIsNotNone(data)
+        #self.AssertEqual()
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/webhooks', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+
+
+    def test_create_webhook(self):
+        data = self.notification_service.create_webhook(webhook_create_options=self.params)
+
+        self.assertIsNotNone(data)
+        #self.AssertEqual()
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/webhooks', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+
+
+    def test_ping_webhook(self):
+        data = self.notification_service.ping_webhook(id="1")
+
+        self.assertIsNotNone(data)
+        #self.AssertEqual()
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/webhooks/1/ping', auth=None, data='null', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+
+
+    def test_list_webhook_deliveries(self):
+        data = self.notification_service.list_webhook_deliveries(id="1")
+
+        self.assertIsNotNone(data)
+        #self.AssertEqual()
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/webhooks/1/deliveries', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+
+class TestNotificationAsync(BaseTest):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.notification_service = idfy_sdk.services.NotificationService()
+
     def setUp(self):
+        super().setUp()
         self.loop = asyncio.new_event_loop()
         asyncio.set_event_loop(None)
     
     def tearDown(self):
         self.loop.close()
 
-    def test_list_unhandled_events_async_async(self, mock_service):
+    def test_list_unhandled_events_async_async(self):
         async def func():
-            return mock_service.list_unhandled_events( threaded=True)
+            return await self.notification_service.list_unhandled_events( threaded=True)
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        mock_service.list_unhandled_events.assert_called_once_with(threaded=True)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/events', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params={'eventType': None, 'tags': None})
     
-    def test_handle_event_async(self, mock_service):
+    def test_handle_event_async(self):
         async def func():
-            return mock_service.handle_event(event_id="1", threaded=True)
+            return await self.notification_service.handle_event(event_id="1", threaded=True)
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        mock_service.handle_event.assert_called_once_with(event_id="1", threaded=True)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/1/handle', auth=None, data='null', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
     
-    def test_handle_multiple_events_async(self, mock_service):
+    def test_handle_multiple_events_async(self):
         async def func():
-            return mock_service.handle_multiple_events(event_ids="1", threaded=True)
+            return await self.notification_service.handle_multiple_events(event_ids="1", threaded=True)
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        mock_service.handle_multiple_events.assert_called_once_with(event_ids="1", threaded=True)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/handle', auth=None, data='"1"', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
     
-    def test_peek_events_async(self, mock_service):
+    def test_peek_events_async(self):
         async def func():
-            return mock_service.peek_events(threaded=True)
+            return await self.notification_service.peek_events(threaded=True)
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        mock_service.peek_events.assert_called_once_with(threaded=True)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/events/peek', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params={'eventType': None, 'tags': None})
     
-    def test_clear_events_async(self, mock_service):
+    def test_clear_events_async(self):
         async def func():
-            return mock_service.clear_events(threaded=True)
+            return await self.notification_service.clear_events(threaded=True)
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        mock_service.clear_events.assert_called_once_with(threaded=True)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/clear', auth=None, data='null', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
 
-    def test_list_event_types_async(self, mock_service):
+    def test_list_event_types_async(self):
         async def func():
-            return mock_service.list_event_types(threaded=True)
+            return await self.notification_service.list_event_types(threaded=True)
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        mock_service.list_event_types.assert_called_once_with(threaded=True)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/events/types', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
     
-    def test_mock_event_async(self, mock_service):
+    def test_mock_event_async(self):
         async def func():
-            return mock_service.mock_event(mock_event_request=params, threaded=True)
+            return await self.notification_service.mock_event(mock_event_request=self.params, threaded=True)
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        mock_service.mock_event.assert_called_once_with(mock_event_request=params, threaded=True)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/mock', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
     
-    def test_get_webhook_async(self, mock_service):
+    def test_get_webhook_async(self):
         async def func():
-            return mock_service.get_webhook(id="1", threaded=True)
+            return await self.notification_service.get_webhook(id="1", threaded=True)
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        mock_service.get_webhook.assert_called_once_with(id="1", threaded=True)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/webhooks/1', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
     
-    def test_delete_webhook_async(self, mock_service):
+    def test_delete_webhook_async(self):
         async def func():
-            return mock_service.delete_webhook(id="1", threaded=True)
+            return await self.notification_service.delete_webhook(id="1", threaded=True)
         data = self.loop.run_until_complete(func())
         
-        self.assertIsNotNone(data)
-        mock_service.delete_webhook.assert_called_once_with(id="1", threaded=True)
+        self.assertIsNone(data)
+        self.mock_http.delete.assert_called_once_with('http://localhost:5000/notification/webhooks/1', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'})
     
-    def test_update_webhook_async(self, mock_service):
+    def test_update_webhook_async(self):
         async def func():
-            return mock_service.update_webhook(id="1", webhook_update_options=params, threaded=True)
+            return await self.notification_service.update_webhook(id="1", webhook_update_options=self.params, threaded=True)
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        mock_service.update_webhook.assert_called_once_with(id="1", webhook_update_options=params, threaded=True)
+        self.mock_http.patch.assert_called_once_with('http://localhost:5000/notification/webhooks/1', data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'})
     
-    def test_list_webhooks_async(self, mock_service):
+    def test_list_webhooks_async(self):
         async def func():
-            return mock_service.list_webhooks(threaded=True)
+            return await self.notification_service.list_webhooks(threaded=True)
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        mock_service.list_webhooks.assert_called_once_with(threaded=True)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/webhooks', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
 
-    def test_create_webhook_async(self, mock_service):
+    def test_create_webhook_async(self):
         async def func():
-            return mock_service.create_webhook(webhook_create_options=params, threaded=True)
+            return await self.notification_service.create_webhook(webhook_create_options=self.params, threaded=True)
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        mock_service.create_webhook.assert_called_once_with(webhook_create_options=params, threaded=True)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/webhooks', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
     
-    def test_ping_webhook_async(self, mock_service):
+    def test_ping_webhook_async(self):
         async def func():
-            return mock_service.ping_webhook(id="1", threaded=True)
+            return await self.notification_service.ping_webhook(id="1", threaded=True)
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        mock_service.ping_webhook.assert_called_once_with(id="1", threaded=True)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/webhooks/1/ping', auth=None, data='null', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
     
-    def test_list_webhook_deliveries_async(self, mock_service):
+    def test_list_webhook_deliveries_async(self):
         async def func():
-            return mock_service.list_webhook_deliveries(id="1", threaded=True)
+            return await self.notification_service.list_webhook_deliveries(id="1", threaded=True)
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        mock_service.list_webhook_deliveries.assert_called_once_with(id="1", threaded=True)
-"""
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/webhooks/1/deliveries', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)

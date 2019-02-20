@@ -1,5 +1,6 @@
 import asyncio
 import functools
+import sys
 
 from idfy_sdk.idfy_configuration import IdfyConfiguration as config
 from idfy_sdk.services.IdfyBaseService import IdfyBaseService
@@ -15,7 +16,11 @@ class MerchantSignService(IdfyBaseService):
         url = config.BaseUrl + urls.MerchantSignature
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Post, url, model=models.SignResponse, data=sign_request))
         return self.Post(url, model=models.SignResponse, data=sign_request)
     
@@ -24,7 +29,11 @@ class MerchantSignService(IdfyBaseService):
         url = config.BaseUrl + urls.MerchantSignature + '/' + transaction_id
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model=models.MerchantSignTransaction))
         return self.Get(url, model=models.MerchantSignTransaction)
     
@@ -43,7 +52,11 @@ class MerchantSignService(IdfyBaseService):
         url = config.BaseUrl + urls.MerchantSignature + '/list'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[MerchantSignTransaction]', params=params))
         return self.Get(url, model='list[MerchantSignTransaction]', params=params)
     
@@ -52,7 +65,11 @@ class MerchantSignService(IdfyBaseService):
         url = config.BaseUrl + urls.Merchant + '/pades/' + signed_document_id
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='file'))
         return self.Get(url, model='file')
     

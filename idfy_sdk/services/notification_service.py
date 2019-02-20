@@ -1,5 +1,6 @@
 import asyncio
 import functools
+import sys
 
 from idfy_sdk.idfy_configuration import IdfyConfiguration as config
 from idfy_sdk import urls as urls
@@ -21,16 +22,24 @@ class NotificationService(IdfyBaseService):
         url = config.BaseUrl + urls.Notification + '/events'
     
         if threaded:
-            loop = asyncio.get_running_loop()
-            return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[event]', params=params))
-        return self.Get(url, model='list[event]', params=params)
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
+            return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[Event]', params=params))
+        return self.Get(url, model='list[Event]', params=params)
     
     def handle_event(self, event_id, threaded=False):
     
         url = config.BaseUrl + urls.Notification + '/events/' + event_id + '/handle'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Post, url))
         return self.Post(url)
     
@@ -39,7 +48,11 @@ class NotificationService(IdfyBaseService):
         url = config.BaseUrl + urls.Notification + '/events/handle'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Post, url, data=event_ids))
         return self.Post(url, data=event_ids)
     
@@ -53,7 +66,11 @@ class NotificationService(IdfyBaseService):
         url = config.BaseUrl + urls.Notification + '/events/peek'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[Event]', params=params))
         return self.Get(url, model='list[Event]', params=params)
     
@@ -62,7 +79,11 @@ class NotificationService(IdfyBaseService):
         url = config.BaseUrl + urls.Notification + '/events/clear'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Post, url))
         return self.Post(url)
 
@@ -71,7 +92,11 @@ class NotificationService(IdfyBaseService):
         url = config.BaseUrl + urls.Notification + '/events/types'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[EventTypeInfo]'))
         return self.Get(url, model='list[EventTypeInfo]')
     
@@ -80,7 +105,11 @@ class NotificationService(IdfyBaseService):
         url = config.BaseUrl + urls.Notification + '/events/mock'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Post, url, model=models.Event, data=mock_event_request))
         return self.Post(url, model=models.Event, data=mock_event_request)
     
@@ -89,7 +118,11 @@ class NotificationService(IdfyBaseService):
         url = config.BaseUrl + urls.Notification + '/webhooks/' + id
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model=models.Webhook))
         return self.Get(url, model=models.Webhook)
     
@@ -98,7 +131,11 @@ class NotificationService(IdfyBaseService):
         url = config.BaseUrl + urls.Notification + '/webhooks/' + str(id)
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Delete, url))
         return self.Delete(url)
     
@@ -107,7 +144,11 @@ class NotificationService(IdfyBaseService):
         url = config.BaseUrl + urls.Notification + '/webhooks/' + str(id)
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Patch, url, model=models.Webhook, data=webhook_update_options))
         return self.Patch(url, model=models.Webhook, data=webhook_update_options)
     
@@ -116,7 +157,11 @@ class NotificationService(IdfyBaseService):
         url = config.BaseUrl + urls.Notification + '/webhooks'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[Webhook]'))
         return self.Get(url, model='list[Webhook]')
 
@@ -125,7 +170,11 @@ class NotificationService(IdfyBaseService):
         url = config.BaseUrl + urls.Notification + '/webhooks'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Post, url, model=models.Webhook, data=webhook_create_options))
         return self.Post(url, model=models.Webhook, data=webhook_create_options)
     
@@ -134,7 +183,11 @@ class NotificationService(IdfyBaseService):
         url = config.BaseUrl + urls.Notification + '/webhooks/' + id + '/ping'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Post, url))
         return self.Post(url)
     
@@ -143,7 +196,11 @@ class NotificationService(IdfyBaseService):
         url = config.BaseUrl + urls.Notification + '/webhooks/' + id + '/deliveries'
     
         if threaded:
-            loop = asyncio.get_running_loop()
+            if sys.version_info >= (3, 7):
+                loop = asyncio.get_running_loop()
+            else:
+                loop = asyncio.get_event_loop()
+
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[WebhookDelivery]'))
         return self.Get(url, model='list[WebhookDelivery]')
     

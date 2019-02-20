@@ -12,6 +12,7 @@ class TestSignature(BaseTest):
     def setUpClass(cls):
         super().setUpClass()
         cls.signature_service = idfy_sdk.services.SignatureService()
+
     def test_get_document(self):
         data = self.signature_service.get_document('123')
 

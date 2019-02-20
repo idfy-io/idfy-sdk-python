@@ -1,48 +1,45 @@
 import asyncio
-import functools
-
 import unittest
 import unittest.mock
 
-params = {'unit': 'test'}
+from test.base_test import BaseTest
+from idfy_sdk.version import version
 
 import idfy_sdk
 
-@unittest.mock.patch('idfy_sdk.services.jwt_service.JwtService', autospec=True, wrap=idfy_sdk.services.JwtService)
-class TestJwt(unittest.TestCase):
+class TestJwt(BaseTest):
     @classmethod
     def setUpClass(cls):
-        pass
+        super().setUpClass()
+        cls.jwt_service = idfy_sdk.services.JwtService()
+    
+    def test_validate(self):
+        data = self.jwt_service.validate(jwt_validation_request=self.params)
 
-    def setUp(self):
-        #self.service = SignatureService()
-        pass
-    
-    def test_validate(self, mock_service):
-    
-        data = mock_service.validate(jwt_validation_request=params)
-        
         self.assertIsNotNone(data)
-        mock_service.validate.assert_called_once_with(jwt_validation_request=params)
-    
-@unittest.mock.patch('idfy_sdk.services.jwt_service.JwtService', autospec=True, wrap=idfy_sdk.services.JwtService)
-class TestJwtAsync(unittest.TestCase):
+        #self.AssertEqual()
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/jwt/validate', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+
+class TestJwtAsync(BaseTest):
     @classmethod
     def setUpClass(cls):
-        pass
+        super().setUpClass()
+        cls.jwt_service = idfy_sdk.services.JwtService()
 
     def setUp(self):
-        #self.service = SignatureService() 
+        super().setUp()
         self.loop = asyncio.new_event_loop()
         asyncio.set_event_loop(None)
     
     def tearDown(self):
         self.loop.close()
     
-    def test_validate_async(self, mock_service):
+    def test_validate_async(self):
         async def func():
-            return mock_service.validate(jwt_validation_request=params, threaded=True)
+            return await self.jwt_service.validate(jwt_validation_request=self.params, threaded=True)
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        mock_service.validate.assert_called_once_with(jwt_validation_request=params, threaded=True)
+        #self.AssertEqual()
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/jwt/validate', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+
