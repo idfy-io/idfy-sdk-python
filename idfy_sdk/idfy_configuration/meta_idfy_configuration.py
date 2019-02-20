@@ -1,5 +1,5 @@
 from idfy_sdk import urls as urls
-from idfy_sdk import version as ver
+from idfy_sdk.version import version as ver
 
 class MetaIdfyConfiguration(type):
 
