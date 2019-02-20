@@ -24,8 +24,8 @@ before_install:
 install:
   - pip install pipenv
   - pipenv install
-  - pipenv install setuptools wheel
-  - python3 setup.py sdist bdist_wheel
+#  - pipenv install setuptools wheel
+#  - python3 setup.py sdist bdist_wheel
 
 script:
   - python3 -m unittest
@@ -38,10 +38,11 @@ deploy:
     on:
       tags: true
       python: 3.7
-  # Push NuGet package to nuget.org on new version
+  # Push Python package to pypi.org on new version
   - provider: pypi
     user: $PYPI_USERNAME
     password: $PYPI_PASSWORD
+    distributions: "sdist bdist_wheel"
     on:
       tags: true
       python: 3.7

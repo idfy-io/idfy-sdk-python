@@ -1,6 +1,9 @@
 import setuptools
 
-from idfy_sdk.version import version as ver
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'idfy_sdk'))
+from version import version as ver
+
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
