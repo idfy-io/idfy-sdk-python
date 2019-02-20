@@ -2,7 +2,7 @@
 import pprint
 import re  
 
-import six
+
 
 from idfy_sdk.models.oauth_secret import OauthSecret  
 
@@ -425,7 +425,7 @@ class UpdateOauthAPIClientRequest(object):
         """Returns the model properties as a dict"""
         result = {}
 
-        for attr, _ in six.iteritems(self.swagger_types):
+        for attr, _ in self.swagger_types.items():
             value = getattr(self, attr)
             if isinstance(value, list):
                 result[attr] = list(map(

@@ -27,7 +27,6 @@ setuptools.setup(
     ],
     install_requires=[
         'Requests',
-        'six',  # Remove this dependancy.
     ],
 
 )

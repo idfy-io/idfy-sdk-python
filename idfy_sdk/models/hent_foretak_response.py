@@ -2,7 +2,7 @@
 import pprint
 import re  
 
-import six
+
 
 from idfy_sdk.models.aksjonar import Aksjonar  
 from idfy_sdk.models.avdeling_data import AvdelingData  
@@ -895,7 +895,7 @@ class HentForetakResponse(object):
         """Returns the model properties as a dict"""
         result = {}
 
-        for attr, _ in six.iteritems(self.swagger_types):
+        for attr, _ in self.swagger_types.items():
             value = getattr(self, attr)
             if isinstance(value, list):
                 result[attr] = list(map(

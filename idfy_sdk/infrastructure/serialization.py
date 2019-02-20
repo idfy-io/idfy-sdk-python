@@ -1,11 +1,10 @@
 import datetime
 import json   
 import re
-import six
 
 import idfy_sdk.models
 
-PRIMITIVE_TYPES = (float, bool, bytes, six.text_type) + six.integer_types
+PRIMITIVE_TYPES = (float, bool, bytes, str, int)
 NATIVE_TYPES_MAPPING = {
     'int': int,
     'long': int,
@@ -54,7 +53,7 @@ def __deserialize(data, klass):
         if klass.startswith('dict('):
             sub_kls = re.match('dict\(([^,]*), (.*)\)', klass).group(2) #pylint: disable=W1401
             return {k: __deserialize(v, sub_kls)
-                    for k, v in six.iteritems(data)}
+                    for k, v in data.items()}
 
         # convert str to class
         if klass in NATIVE_TYPES_MAPPING:
@@ -80,7 +79,7 @@ def __deserialize_primitive(data, klass):
     try:
         return klass(data)
     except UnicodeEncodeError:
-        return six.u(data)
+        return data # This might have to be marked as unicode somehow
     except TypeError:
         return data
 
@@ -136,7 +135,7 @@ def __deserialize_model(data, klass):
 
     kwargs = {}
     if klass.swagger_types is not None:
-        for attr, attr_type in six.iteritems(klass.swagger_types):
+        for attr, attr_type in klass.swagger_types.items():
             if (data is not None and
                     klass.attribute_map[attr] in data and
                     isinstance(data, (list, dict))):
@@ -193,9 +192,9 @@ def serialize(obj):
         # Convert attribute name to json key in
         # model definition for request.
         obj_dict = {obj.attribute_map[attr]: getattr(obj, attr)
-                    for attr, _ in six.iteritems(obj.swagger_types)
+                    for attr, _ in obj.swagger_types.items()
                     if getattr(obj, attr) is not None}
 
     return {key: serialize(val)
-            for key, val in six.iteritems(obj_dict)}
+            for key, val in obj_dict.items()}
 

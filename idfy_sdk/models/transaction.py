@@ -2,7 +2,7 @@
 import pprint
 import re  
 
-import six
+
 
 
 class Transaction(object):
@@ -254,7 +254,7 @@ class Transaction(object):
         """Returns the model properties as a dict"""
         result = {}
 
-        for attr, _ in six.iteritems(self.swagger_types):
+        for attr, _ in self.swagger_types.items():
             value = getattr(self, attr)
             if isinstance(value, list):
                 result[attr] = list(map(

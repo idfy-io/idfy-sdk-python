@@ -2,7 +2,7 @@
 import pprint
 import re  
 
-import six
+
 
 from idfy_sdk.models.extra_info_document_request import ExtraInfoDocumentRequest  
 from idfy_sdk.models.security import Security  
@@ -284,7 +284,7 @@ class Advanced(object):
         """Returns the model properties as a dict"""
         result = {}
 
-        for attr, _ in six.iteritems(self.swagger_types):
+        for attr, _ in self.swagger_types.items():
             value = getattr(self, attr)
             if isinstance(value, list):
                 result[attr] = list(map(

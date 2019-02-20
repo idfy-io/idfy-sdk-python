@@ -1,16 +1,8 @@
 from __future__ import absolute_import
 
-import mimetypes
-from multiprocessing.pool import ThreadPool
 import os
 import datetime
-import tempfile
-import asyncio
 from json import dumps
-
-# python 2 and python 3 compatibility library
-import six
-from six.moves.urllib.parse import quote
 
 # internal imports
 from idfy_sdk.idfy_configuration import IdfyConfiguration as config

@@ -2,7 +2,7 @@
 import pprint
 import re  
 
-import six
+
 
 from idfy_sdk.models.sdo_signers import SDOSigners  
 from idfy_sdk.models.seal import Seal  
@@ -256,7 +256,7 @@ class ParseSDOResponse(object):
         """Returns the model properties as a dict"""
         result = {}
 
-        for attr, _ in six.iteritems(self.swagger_types):
+        for attr, _ in self.swagger_types.items():
             value = getattr(self, attr)
             if isinstance(value, list):
                 result[attr] = list(map(
