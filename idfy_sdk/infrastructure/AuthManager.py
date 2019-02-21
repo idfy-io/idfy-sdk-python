@@ -1,3 +1,5 @@
+"""Contains the functions used to fetch Oauth tokens from the Authentication endpoint."""
+
 import datetime
 from requests.auth import HTTPBasicAuth
 
@@ -8,28 +10,34 @@ from idfy_sdk import urls as urls
 
 
 def Authorize():
-    #check if config object already has a token with a valid expiration date. If so. Return it.
-    if (config.OAuthToken) and (config.OAuthToken.expiry > datetime.datetime.utcnow()): # Doing this check two different places seems sub-optimal.
+    """Authorize a service using config class.
+
+    If the service does not have client credentials set individually it
+    calls this function, which fetches them from the configuration class.
+    If the config object already has a token with a valid expiration date
+    that token is re-used.
+    """
+    if (config.OAuthToken) and (config.OAuthToken.expiry > datetime.datetime.utcnow()):
             return config.OAuthToken
     config.OAuthToken = AuhorizeWithData(config.ClientId, config.ClientSecret, config.Scopes)
     return config.OAuthToken
 
 def AuhorizeWithData(clientId, clientSecret, scopes):
+    """Gets the Oauth token using client credentials"""
     if clientId is None:
-        raise AttributeError("Client credentials have not been set!") # NTS: have another look at this
+        raise TypeError("Client credentials have not been set!")
 
     formData = {
         'grant_type': 'client_credentials',
         'scope': ' '.join(scopes)
     }
-
-    basicAuth = HTTPBasicAuth(clientId, clientSecret) # Clean up this line and everything beneath it.
-
+    
+    basicAuth = HTTPBasicAuth(clientId, clientSecret)
     url = config.OAuthBaseUrl + urls.OAuthTokens
-
-    token = deserialize((http.Post(url, data=formData, auth=basicAuth)), 'OAuthToken')
-
-#Put in try/catch around Post call to token API
+    try:
+        token = deserialize((http.Post(url, data=formData, auth=basicAuth)), 'OAuthToken')
+    except (Exception) as e:
+        raise Exception("An error occurred while fetching the Oauth token.") from e
 
     token.expiry = datetime.datetime.utcnow() + datetime.timedelta(seconds = token.expires_in)
 

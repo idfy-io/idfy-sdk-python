@@ -1,3 +1,5 @@
+"""Uses the Requests module to send http requests to the API endpoints"""
+
 import requests
 from idfy_sdk.idfy_configuration import IdfyConfiguration as config
 from idfy_sdk.infrastructure.idfy_exception import IdfyException
@@ -21,7 +23,7 @@ def Post(url, token = None, params = None, data=None, auth = None): # Test wheth
     #    raise IdfyException(response)
 
 def Put(url, token, params=None, data=None):
-    response = requests.put(url, headers=Headers(token), params=params, data=data) #test some Post methods. I changed "data=" to "data="
+    response = requests.put(url, headers=Headers(token), params=params, data=data)
 
     return response
     #if response.ok:
@@ -63,5 +65,6 @@ def Headers(token): # The headers need to be improved and the default_headers th
     return headers
 
 def create_exception(response): #TODO
-    pass
+    """Extracts useful content from the response and creates an IdfyException"""
+    
 

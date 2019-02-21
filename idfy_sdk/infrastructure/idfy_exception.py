@@ -1,24 +1,78 @@
+import json
+
+import requests
+
 from idfy_sdk.infrastructure.serialization import deserialize
 
 class IdfyException(Exception): #TODO
-    """
-    Do I write the mappings for all the different values that I might expect from the Error object
-    in IdfyError (as optional parameters), and interate over them in the constructor of Idfy Exception;
-    removing all the ones that are None and creating member data dynamically that way?
-    """
-    def __init__(self, response):
-        self.message = "This is an Idfy exception"
-        self.data = None
-        self.raw_data = response.content
-        self.unicode_data = response.text
+    """This is a custom exception defined in the Idfy SDK
 
-        try:
-            #data = deserialize(response, 'IdfyError') #IdfyError has not yet been created
-            self.data = response.json()
-        except ValueError:
-            print("The Error object in the response could not be deserialized.")
-            #data = None
-        else:
-            self.message = self.data
+    This is the only custom exception in the Idfy SDK, and
+    as such it wraps several different types of errors.
 
-        super().__init__(self.message)
+    If it's just used to signal a generic error to the user,
+    it might just contain an informative message in
+    plain-text. In this case the message will be visible in
+    IdfyException.message.
+
+    it might also contain JSON, in which case the json data
+    can be found in IdfyException.error. If the JSON includes
+    a 'message', this will be used as the exceptions message.
+
+    In the vast majority of cases this exception will be used
+    to wrap error responses from one of our API endpoints. In
+    which case it will always contain the raw requests.Response
+    object in IdfyException.response, and the status code of
+    the response in IdfyException.http_status_code. It will also
+    contain:
+        - IdfyException.message
+        - IdfyException.code
+        - IdfyException.error
+        - IdfyException.error_description
+            -- This is only used by the Oauth endpoint
+
+    If the SDK fails to find/parse any JSON from the response
+    it will put the UTF8 encoded data from the response into
+    IdfyError.error and try to return as much useful information
+    as possible (Note: If this happens your requests are probably
+    not reaching one of our endpoints.)
+    """
+    def __init__(self, data):
+        #check if data is Response or str if not raise Exception
+
+        if data is str:
+            try:
+                self._error_dict = json.loads(data)
+                if self._error_dict["message"] is not None:
+                    super().__init__(self._error_dict["message"])
+                    self.error = self._error_dict
+                else:
+                    super().__init__("An error occured in the Idfy SDK. Details are in 'IdfyException.error'.")
+                    self.error = self._error_dict
+
+            except ValueError:
+                super().__init__(data)
+                self.message = data
+        
+        elif data is requests.Response:
+            try:
+                self._error_dict = data.json()
+            except ValueError:
+                super().__init__("Response did not contain valid JSON (all Idfy endpoints return JSON).")
+                self.error = data.text
+
+            self.response = data
+
+            self.http_status_code = data.status_code
+
+            if self._error_dict["message"] is not None:
+                self.message = self._error_dict["message"]
+            
+            if self._error_dict["code"] is not None:
+                self.code = self._error_dict["code"]
+            
+            if self._error_dict["error"] is not None:
+                self.error = self._error_dict["error"]
+            
+            if self._error_dict["error_description"] is not None:
+                self.error_description = self._error_dict["error_description"]

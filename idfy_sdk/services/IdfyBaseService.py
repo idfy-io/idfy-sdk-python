@@ -19,7 +19,6 @@ class IdfyBaseService(object):
             self.independant = False
 
         self.default_headers = {}
-        self.user_agent = 'Eivind was here.'
         self._oauth_token = None if self.independant else config.OAuthToken
         self._client_id = client_id
         self._client_secret = client_secret
@@ -36,7 +35,9 @@ class IdfyBaseService(object):
     @client_id.setter
     def client_id(self, value):
         if self.independant and value is None:
-            raise Exception()
+            raise TypeError("The service constructor must either be \
+            empty or feature all three cretential types (id, secret, scope). \
+            The client_id is missing.")
 
         self._client_id = value
     
@@ -49,7 +50,9 @@ class IdfyBaseService(object):
     @client_secret.setter
     def client_secret(self, value):
         if self.independant and value is None:
-            raise Exception()
+            raise TypeError("The service constructor must either be \
+            empty or feature all three cretential types (id, secret, scope). \
+            The client_secret is missing.")
 
         self._client_secret = value
     
@@ -62,7 +65,9 @@ class IdfyBaseService(object):
     @scopes.setter
     def scopes(self, value):
         if self.independant and value is None:
-            raise Exception()
+            raise TypeError("The service constructor must either be \
+            empty or feature all three cretential types (id, secret, scope). \
+            The scopes are missing.")
 
         self._scopes = value
     
