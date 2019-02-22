@@ -8,6 +8,7 @@ from idfy_sdk import urls as urls
 from idfy_sdk import models as models
 
 class IdentificationService(IdfyBaseService):
+    """Identify users through eID providers such as Norwegian BankID, Swedish BankID and NemID."""
     def __init__(self, client_id: str=None, client_secret: str=None, scopes: list=None):
         super().__init__(client_id, client_secret, scopes)
 

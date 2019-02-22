@@ -8,7 +8,7 @@ from idfy_sdk.services.IdfyBaseService import IdfyBaseService
 from idfy_sdk import models as models
 
 class SignatureService(IdfyBaseService):
-    
+    """Sign contracts, declarations, forms and other documents using digital signatures."""
 
     def __init__(self, client_id=None, client_secret=None, scopes=None):
         super().__init__(client_id=client_id, client_secret=client_secret, scopes=scopes)
@@ -345,7 +345,7 @@ class SignatureService(IdfyBaseService):
     
     def list_themes(self, threaded=False):
     
-        url = config.BaseUrl + urls.SignatureDocuments + '/themes/list/themes'
+        url = config.BaseUrl + urls.Signature + '/themes/list/themes'
     
         if threaded:
             if sys.version_info >= (3, 7):
@@ -353,12 +353,12 @@ class SignatureService(IdfyBaseService):
             else:
                 loop = asyncio.get_event_loop()
 
-            return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[ColorTheme]'))
-        return self.Get(url, model='list[ColorTheme]')
+            return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[str]'))
+        return self.Get(url, model='list[str]')
     
     def list_spinners(self, threaded=False):
     
-        url = config.BaseUrl + urls.SignatureDocuments + '/themes/list/spinners'
+        url = config.BaseUrl + urls.Signature + '/themes/list/spinners'
     
         if threaded:
             if sys.version_info >= (3, 7):
@@ -366,5 +366,5 @@ class SignatureService(IdfyBaseService):
             else:
                 loop = asyncio.get_event_loop()
 
-            return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[Spinner]'))
-        return self.Get(url, model='list[Spinner]')
+            return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[str]'))
+        return self.Get(url, model='list[str]')

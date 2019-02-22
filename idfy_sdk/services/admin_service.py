@@ -7,12 +7,14 @@ from idfy_sdk.services.IdfyBaseService import IdfyBaseService
 from idfy_sdk import urls as urls
 from idfy_sdk import models as models
 
-class AdminService(IdfyBaseService):    #TODO: add comments to delimit the different sections
+class AdminService(IdfyBaseService):
+    """Manage your Idfy account."""
     def __init__(self, client_id: str=None, client_secret: str=None, scopes: list=None):
         super().__init__(client_id, client_secret, scopes)
 
     # Account
     def get_account(self, threaded=False):
+        """Retrieve the details of your Idfy account"""
     
         url = config.BaseUrl + urls.Account
     
@@ -27,6 +29,7 @@ class AdminService(IdfyBaseService):    #TODO: add comments to delimit the diffe
     
 
     def update_account(self, account_update_options, threaded=False):
+        """Update your Idfy account"""
     
         url = config.BaseUrl + urls.Account
     
@@ -40,6 +43,7 @@ class AdminService(IdfyBaseService):    #TODO: add comments to delimit the diffe
         return self.Put(url, model=models.Account, data=account_update_options)
     
     def create_account(self, account_create_options: 'AccountCreateOpions', threaded=False):
+        """Creates a new Idfy account"""
     
         url = config.BaseUrl + urls.Account
     

@@ -1,16 +1,33 @@
 # Idfy Python SDK
-[![Build Status](https://travis-ci.org/idfy-io/idfy-sdk-python.svg?branch=master)](https://travis-ci.org/idfy-io/idfy-sdk-python)
+[![Build Status](https://travis-ci.org/idfy-io/idfy-sdk-python.svg?branch=master)](https://travis-ci.org/idfy-io/idfy-sdk-python) ![PyPI](https://img.shields.io/pypi/v/idfy-sdk.svg)
 
 A Python SDK for simple integration with the Idfy REST API.
 
 Supports Python 3.5 and above. (3.5, 3.6, 3.7)
 
-Using the async methods will make the program no longer run strictly single-threaded. The SDK is also able to make use of some of the features introduced to the asyncio module in Python 3.7, so running the code on that version or later will yield slight improvemets to efficiency and robustness when using async methods.
+Using the async methods will make the program no longer run strictly single-threaded. The SDK is also able to make use of some of the features introduced to the asyncio module in Python 3.7, so running the code on that version or later might yield slight improvemets to efficiency and robustness when using async methods.
 
 ## Installation
-The package is available on PyPI. Use of Pipenv is recommended(https://pipenv.readthedocs.io).
+The package is available on PyPI. Use of Pipenv is recommended(https://pipenv.readthedocs.io):
 
-    pipenv install idfy-sdk-python
+    pipenv install idfy-sdk
+
+Although it's just as easy to install without pipenv:
+
+    pip install idfy-sdk
+
+### External libraries
+This SDK was made to use as few external libraries as possible. It uses only the excellent "Requests" module (http://docs.python-requests.org/en/master/) which is probably the most commonly used Python library as of the writing of this document.
+
+## Working on the Code
+Developers who want to make changes to the codebase are welcome to do so, but if you want to run the included unit-tests you need to download and run the Idfy mock server (https://github.com/idfy-io/idfy-mock-server). Once the server is up and running, all you have to do is navigate to the root folder of the SDK and type:
+
+    python -m unittest
+
+If you're developing on a Linux-based system, remember to replace "python" with your desired Python interpreter as appropriate.
+
+We know that many of our customers have very talented in-house developers, and we want to encourage our customers to make any changes they want to make the SDK perfectly suit their needs. Please feel free to send any potential questions or suggestions for improvement to our support channels listed below. We appreciate the feedback.
+
 
 
 

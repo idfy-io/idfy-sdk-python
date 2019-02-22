@@ -202,7 +202,7 @@ class TestSignature(BaseTest):
         
         self.assertIsNotNone(data)
         #self.assertEqual()
-        self.mock_http.get.assert_called_once_with('http://localhost:5000/signature/documents/themes/list/themes', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/signature/themes/list/themes', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
         self.assertEqual(self.mock_http.get.call_count, 1)
     
     def test_list_spinners(self):
@@ -210,7 +210,7 @@ class TestSignature(BaseTest):
         
         self.assertIsNotNone(data)
         #self.assertEqual()
-        self.mock_http.get.assert_called_once_with('http://localhost:5000/signature/documents/themes/list/spinners', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/signature/themes/list/spinners', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
         self.assertEqual(self.mock_http.get.call_count, 1)
 
 class TestSignatureAsync(BaseTest):
@@ -488,7 +488,7 @@ class TestSignatureAsync(BaseTest):
         
         self.assertIsNotNone(data)
         #self.assertEqual()
-        self.mock_http.get.assert_called_once_with('http://localhost:5000/signature/documents/themes/list/themes', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/signature/themes/list/themes', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
         self.assertEqual(self.mock_http.get.call_count, 1)
     
     def test_list_spinners_async(self):
@@ -499,7 +499,7 @@ class TestSignatureAsync(BaseTest):
         
         self.assertIsNotNone(data)
         #self.assertEqual()
-        self.mock_http.get.assert_called_once_with('http://localhost:5000/signature/documents/themes/list/spinners', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/signature/themes/list/spinners', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
         self.assertEqual(self.mock_http.get.call_count, 1)
 
 #Provide CLI to the test script.

@@ -18,7 +18,7 @@ class TestJwt(BaseTest):
 
         self.assertIsNotNone(data)
         #self.AssertEqual()
-        self.mock_http.post.assert_called_once_with('http://localhost:5000/jwt/validate', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/jwt/validate', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
 
 class TestJwtAsync(BaseTest):
     @classmethod
@@ -41,5 +41,5 @@ class TestJwtAsync(BaseTest):
         
         self.assertIsNotNone(data)
         #self.AssertEqual()
-        self.mock_http.post.assert_called_once_with('http://localhost:5000/jwt/validate', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/jwt/validate', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
 

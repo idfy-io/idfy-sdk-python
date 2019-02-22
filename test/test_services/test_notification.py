@@ -18,7 +18,7 @@ class TestNotification(BaseTest):
 
         self.assertIsNotNone(data)
         #self.AssertEqual()
-        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/events', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params={'eventType': None, 'tags': None})
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/events', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params={'eventType': None, 'tags': None})
 
 
     def test_handle_event(self):
@@ -26,7 +26,7 @@ class TestNotification(BaseTest):
 
         self.assertIsNotNone(data)
         #self.AssertEqual()
-        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/1/handle', auth=None, data='null', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/1/handle', auth=None, data='null', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
 
 
     def test_handle_multiple_events(self):
@@ -34,7 +34,7 @@ class TestNotification(BaseTest):
 
         self.assertIsNotNone(data)
         #self.AssertEqual()
-        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/handle', auth=None, data='"1"', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/handle', auth=None, data='"1"', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
 
 
     def test_peek_events(self):
@@ -42,7 +42,7 @@ class TestNotification(BaseTest):
 
         self.assertIsNotNone(data)
         #self.AssertEqual()
-        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/events/peek', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params={'eventType': None, 'tags': None})
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/events/peek', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params={'eventType': None, 'tags': None})
 
 
     def test_clear_events(self):
@@ -50,7 +50,7 @@ class TestNotification(BaseTest):
 
         self.assertIsNotNone(data)
         #self.AssertEqual()
-        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/clear', auth=None, data='null', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/clear', auth=None, data='null', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
 
 
     def test_list_event_types(self):
@@ -58,7 +58,7 @@ class TestNotification(BaseTest):
 
         self.assertIsNotNone(data)
         #self.AssertEqual()
-        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/events/types', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/events/types', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
 
 
     def test_mock_event(self):
@@ -66,7 +66,7 @@ class TestNotification(BaseTest):
 
         self.assertIsNotNone(data)
         #self.AssertEqual()
-        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/mock', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/mock', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
 
 
     def test_get_webhook(self):
@@ -74,7 +74,7 @@ class TestNotification(BaseTest):
 
         self.assertIsNotNone(data)
         #self.AssertEqual()
-        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/webhooks/1', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/webhooks/1', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
 
 
     def test_delete_webhook(self):
@@ -82,7 +82,7 @@ class TestNotification(BaseTest):
 
         self.assertIsNone(data)
         #self.AssertEqual()
-        self.mock_http.delete.assert_called_once_with('http://localhost:5000/notification/webhooks/1', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'})
+        self.mock_http.delete.assert_called_once_with('http://localhost:5000/notification/webhooks/1', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'})
 
 
     def test_update_webhook(self):
@@ -90,7 +90,7 @@ class TestNotification(BaseTest):
 
         self.assertIsNotNone(data)
         #self.AssertEqual()
-        self.mock_http.patch.assert_called_once_with('http://localhost:5000/notification/webhooks/1', data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'})
+        self.mock_http.patch.assert_called_once_with('http://localhost:5000/notification/webhooks/1', data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'})
 
 
     def test_list_webhooks(self):
@@ -98,7 +98,7 @@ class TestNotification(BaseTest):
 
         self.assertIsNotNone(data)
         #self.AssertEqual()
-        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/webhooks', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/webhooks', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
 
 
     def test_create_webhook(self):
@@ -106,7 +106,7 @@ class TestNotification(BaseTest):
 
         self.assertIsNotNone(data)
         #self.AssertEqual()
-        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/webhooks', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/webhooks', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
 
 
     def test_ping_webhook(self):
@@ -114,7 +114,7 @@ class TestNotification(BaseTest):
 
         self.assertIsNotNone(data)
         #self.AssertEqual()
-        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/webhooks/1/ping', auth=None, data='null', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/webhooks/1/ping', auth=None, data='null', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
 
 
     def test_list_webhook_deliveries(self):
@@ -122,7 +122,7 @@ class TestNotification(BaseTest):
 
         self.assertIsNotNone(data)
         #self.AssertEqual()
-        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/webhooks/1/deliveries', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/webhooks/1/deliveries', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
 
 class TestNotificationAsync(BaseTest):
     @classmethod
@@ -144,7 +144,7 @@ class TestNotificationAsync(BaseTest):
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/events', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params={'eventType': None, 'tags': None})
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/events', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params={'eventType': None, 'tags': None})
     
     def test_handle_event_async(self):
         async def func():
@@ -152,7 +152,7 @@ class TestNotificationAsync(BaseTest):
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/1/handle', auth=None, data='null', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/1/handle', auth=None, data='null', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
     
     def test_handle_multiple_events_async(self):
         async def func():
@@ -160,7 +160,7 @@ class TestNotificationAsync(BaseTest):
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/handle', auth=None, data='"1"', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/handle', auth=None, data='"1"', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
     
     def test_peek_events_async(self):
         async def func():
@@ -168,7 +168,7 @@ class TestNotificationAsync(BaseTest):
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/events/peek', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params={'eventType': None, 'tags': None})
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/events/peek', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params={'eventType': None, 'tags': None})
     
     def test_clear_events_async(self):
         async def func():
@@ -176,7 +176,7 @@ class TestNotificationAsync(BaseTest):
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/clear', auth=None, data='null', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/clear', auth=None, data='null', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
 
     def test_list_event_types_async(self):
         async def func():
@@ -184,7 +184,7 @@ class TestNotificationAsync(BaseTest):
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/events/types', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/events/types', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
     
     def test_mock_event_async(self):
         async def func():
@@ -192,7 +192,7 @@ class TestNotificationAsync(BaseTest):
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/mock', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/events/mock', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
     
     def test_get_webhook_async(self):
         async def func():
@@ -200,7 +200,7 @@ class TestNotificationAsync(BaseTest):
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/webhooks/1', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/webhooks/1', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
     
     def test_delete_webhook_async(self):
         async def func():
@@ -208,7 +208,7 @@ class TestNotificationAsync(BaseTest):
         data = self.loop.run_until_complete(func())
         
         self.assertIsNone(data)
-        self.mock_http.delete.assert_called_once_with('http://localhost:5000/notification/webhooks/1', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'})
+        self.mock_http.delete.assert_called_once_with('http://localhost:5000/notification/webhooks/1', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'})
     
     def test_update_webhook_async(self):
         async def func():
@@ -216,7 +216,7 @@ class TestNotificationAsync(BaseTest):
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        self.mock_http.patch.assert_called_once_with('http://localhost:5000/notification/webhooks/1', data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'})
+        self.mock_http.patch.assert_called_once_with('http://localhost:5000/notification/webhooks/1', data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'})
     
     def test_list_webhooks_async(self):
         async def func():
@@ -224,7 +224,7 @@ class TestNotificationAsync(BaseTest):
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/webhooks', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/webhooks', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
 
     def test_create_webhook_async(self):
         async def func():
@@ -232,7 +232,7 @@ class TestNotificationAsync(BaseTest):
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/webhooks', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/webhooks', auth=None, data='{"unit": "test"}', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
     
     def test_ping_webhook_async(self):
         async def func():
@@ -240,7 +240,7 @@ class TestNotificationAsync(BaseTest):
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/webhooks/1/ping', auth=None, data='null', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.post.assert_called_once_with('http://localhost:5000/notification/webhooks/1/ping', auth=None, data='null', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
     
     def test_list_webhook_deliveries_async(self):
         async def func():
@@ -248,4 +248,4 @@ class TestNotificationAsync(BaseTest):
         data = self.loop.run_until_complete(func())
         
         self.assertIsNotNone(data)
-        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/webhooks/1/deliveries', headers={'X-Idfy-SDK': 'Python 1.0.0-beta.9', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+        self.mock_http.get.assert_called_once_with('http://localhost:5000/notification/webhooks/1/deliveries', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)

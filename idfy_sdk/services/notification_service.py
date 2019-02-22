@@ -8,6 +8,8 @@ from idfy_sdk.services.IdfyBaseService import IdfyBaseService
 from idfy_sdk import models as models
 
 class NotificationService(IdfyBaseService):
+    """Manage events that are raised when something happens in your account."""
+    
     def __init__(self, client_id: str=None, client_secret: str=None, scopes: list=None):
         super().__init__(client_id, client_secret, scopes)
 

@@ -40,7 +40,11 @@ class IdfyException(Exception): #TODO
     def __init__(self, data):
         #check if data is Response or str if not raise Exception
 
-        if data is str:
+        #print(data.status_code)
+
+        #super().__init__(data)
+
+        if isinstance(data, str):
             try:
                 self._error_dict = json.loads(data)
                 if self._error_dict["message"] is not None:
@@ -54,25 +58,33 @@ class IdfyException(Exception): #TODO
                 super().__init__(data)
                 self.message = data
         
-        elif data is requests.Response:
+        elif isinstance(data, requests.models.Response):
             try:
-                self._error_dict = data.json()
+                if data.text != '':
+                    self._error_dict = data.json()
+
+                    if self._error_dict["message"] is not None:
+                        self.message = self._error_dict["message"]
+                    
+                    if self._error_dict["code"] is not None:
+                        self.code = self._error_dict["code"]
+                    
+                    if self._error_dict["error"] is not None:
+                        self.error = self._error_dict["error"]
+                    
+                    if self._error_dict["error_description"] is not None:
+                        self.error_description = self._error_dict["error_description"]
+                
+                    super().__init__("Server returned {}, with message: {}".format(data.status_code, self.message))
+                
+                else:
+                    super().__init__("Server returned {}, with an empty body.(Target probably doesn't exist)".format(data.status_code))
+
             except ValueError:
-                super().__init__("Response did not contain valid JSON (all Idfy endpoints return JSON).")
+                super().__init__("Response did not contain valid JSON (all Idfy endpoints return JSON).{}".format(data.status_code))
                 self.error = data.text
 
-            self.response = data
+            self.response = data    # This might just be fetching the repr of the object, and not a reference to the object itself.
 
             self.http_status_code = data.status_code
-
-            if self._error_dict["message"] is not None:
-                self.message = self._error_dict["message"]
-            
-            if self._error_dict["code"] is not None:
-                self.code = self._error_dict["code"]
-            
-            if self._error_dict["error"] is not None:
-                self.error = self._error_dict["error"]
-            
-            if self._error_dict["error_description"] is not None:
-                self.error_description = self._error_dict["error_description"]
+           
