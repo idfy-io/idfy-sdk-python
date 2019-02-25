@@ -61,6 +61,7 @@ git add $versionFilePath
 git commit -m "Release $newVersion"
 git push origin master
 
-# Push release-commit and tag
-git push origin master
-git push origin v$newVersion
+# Create and push tag
+$tag = "v$newVersion"
+git tag $tag
+git push origin $tag
