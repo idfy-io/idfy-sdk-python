@@ -6,11 +6,11 @@ A Python SDK for simple integration with the Idfy REST API.
 Supports Python 3.5 and above. (3.5, 3.6, 3.7)
 
 ## Installation
-The package is available on PyPI. Use of Pipenv is recommended(https://pipenv.readthedocs.io):
+The package is available on PyPI. Use of Pipenv is recommended (https://pipenv.readthedocs.io):
 
     pipenv install idfy-sdk
 
-Although it's just as easy to install without pipenv:
+Although it's just as easy to install without Pipenv:
 
     pip install idfy-sdk
 
