@@ -62,18 +62,18 @@ class MerchantSignService(IdfyBaseService):
             return loop.run_in_executor(None, functools.partial(self.Get, url, model='list[MerchantSignTransaction]', params=params))
         return self.Get(url, model='list[MerchantSignTransaction]', params=params)
     
-    def get_pades(self, signed_document_id, threaded=False):
-    
-        url = config.BaseUrl + urls.Merchant + '/pades/' + signed_document_id
-    
-        if threaded:
-            if sys.version_info >= (3, 7):
-                loop = asyncio.get_running_loop()
-            else:
-                loop = asyncio.get_event_loop()
-
-            return loop.run_in_executor(None, functools.partial(self.Get, url, model='file'))
-        return self.Get(url, model='file')
+    #def get_pades(self, signed_document_id, threaded=False):
+    #
+    #    url = config.BaseUrl + urls.Merchant + '/pades/' + signed_document_id
+    #
+    #    if threaded:
+    #        if sys.version_info >= (3, 7):
+    #            loop = asyncio.get_running_loop()
+    #        else:
+    #            loop = asyncio.get_event_loop()
+#
+    #        return loop.run_in_executor(None, functools.partial(self.Get, url, model='file'))
+    #    return self.Get(url, model='file')
     
 
     

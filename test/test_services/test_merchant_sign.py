@@ -33,13 +33,13 @@ class TestMerchantSign(BaseTest):
         self.assertIsNotNone(data)
         #self.AssertEqual()
         self.mock_http.get.assert_called_once_with('http://localhost:5000/merchant/signature/list', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params={'oauthClientId': None, 'fromDate': None, 'to_date': None})
-    @unittest.skip("Mock server error")
-    def test_get_pades(self):
-        data = self.merchant_sign_service.get_pades(signed_document_id="1")
-
-        self.assertIsNotNone(data)
-        #self.AssertEqual()
-        self.mock_http.get.assert_called_once_with('http://localhost:5000/merchant/pades/1', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+    #@unittest.skip("Mock server error")
+    #def test_get_pades(self):
+    #    data = self.merchant_sign_service.get_pades(signed_document_id="1")
+#
+    #    self.assertIsNotNone(data)
+    #    #self.AssertEqual()
+    #    self.mock_http.get.assert_called_once_with('http://localhost:5000/merchant/pades/1', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
 
 
 class TestMerchantSignAsync(BaseTest):
@@ -81,12 +81,12 @@ class TestMerchantSignAsync(BaseTest):
 
         self.assertIsNotNone(data)
         self.mock_http.get.assert_called_once_with('http://localhost:5000/merchant/signature/list', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params={'oauthClientId': None, 'fromDate': None, 'to_date': None})
-    @unittest.skip("Mock server error")
-    def test_get_pades(self):
-        async def func():
-            return await self.merchant_sign_service.get_pades(signed_document_id="1", threaded=True)
-        data = self.loop.run_until_complete(func())
-
-        
-        self.assertIsNotNone(data)
-        self.mock_http.get.assert_called_once_with('http://localhost:5000/merchant/pades/1', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
+    #@unittest.skip("Mock server error")
+    #def test_get_pades(self):
+    #    async def func():
+    #        return await self.merchant_sign_service.get_pades(signed_document_id="1", threaded=True)
+    #    data = self.loop.run_until_complete(func())
+#
+    #    
+    #    self.assertIsNotNone(data)
+    #    self.mock_http.get.assert_called_once_with('http://localhost:5000/merchant/pades/1', headers={'X-Idfy-SDK': 'Python {}'.format(version), 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIifQ.UIZchxQD36xuhacrJF9HQ5SIUxH5HBiv9noESAacsxU', 'Content-Type': 'application/json'}, params=None)
