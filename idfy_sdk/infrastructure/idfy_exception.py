@@ -13,10 +13,10 @@ class IdfyException(Exception): #TODO
     If it's just used to signal a generic error to the user,
     it might just contain an informative message in
     plain-text. In this case the message will be visible in
-    IdfyException.message.
+    'IdfyException.message'.
 
     it might also contain JSON, in which case the json data
-    can be found in IdfyException.error. If the JSON includes
+    can be found in 'IdfyException.error'. If the JSON includes
     a 'message', this will be used as the exceptions message.
 
     In the vast majority of cases this exception will be used
@@ -87,4 +87,7 @@ class IdfyException(Exception): #TODO
             self.response = data    # This might just be fetching the repr of the object, and not a reference to the object itself.
 
             self.http_status_code = data.status_code
+        
+        else:
+            raise IdfyException("Invalid value returned from http request.")
            
