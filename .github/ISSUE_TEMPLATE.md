@@ -29,7 +29,7 @@
 * **Please tell us about your environment:**
   
   - Idfy SDK version: 
-  - .NET version: 
+  - Python version: 
   - OS version: 
 
 
