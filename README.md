@@ -1,5 +1,5 @@
 # Idfy Python SDK
-[![Build Status](https://travis-ci.org/idfy-io/idfy-sdk-python.svg?branch=master)](https://travis-ci.org/idfy-io/idfy-sdk-python) ![PyPI](https://img.shields.io/pypi/v/idfy-sdk.svg)
+[![Build Status](https://travis-ci.org/idfy-io/idfy-sdk-python.svg?branch=master)](https://travis-ci.org/idfy-io/idfy-sdk-python) [![PyPI](https://img.shields.io/pypi/v/idfy-sdk.svg)](https://pypi.org/project/idfy-sdk)
 
 A Python SDK for simple integration with the Idfy REST API.
 
@@ -25,9 +25,6 @@ Developers who want to make changes to the codebase are welcome to do so, but if
 If you're developing on a Linux-based system, remember to replace "python" with your desired Python interpreter as appropriate.
 
 We know that many of our customers have very talented in-house developers, and we want to encourage our customers to make any changes they want to make the SDK perfectly suit their needs. Please feel free to send any potential questions or suggestions for improvement to our support channels listed below. We appreciate the feedback.
-
-
-
 
 ## Documentation
 - [Idfy REST API Reference](https://developer.idfy.io/api)
