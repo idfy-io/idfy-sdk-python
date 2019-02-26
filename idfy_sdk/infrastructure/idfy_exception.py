@@ -4,7 +4,7 @@ import requests
 
 from idfy_sdk.infrastructure.serialization import deserialize
 
-class IdfyException(Exception): #TODO
+class IdfyException(Exception):
     """This is a custom exception defined in the Idfy SDK
 
     This is the only custom exception in the Idfy SDK, and
@@ -63,16 +63,16 @@ class IdfyException(Exception): #TODO
                 if data.text != '':
                     self._error_dict = data.json()
 
-                    if self._error_dict["message"] is not None:
+                    if "message" in self._error_dict:
                         self.message = self._error_dict["message"]
                     
-                    if self._error_dict["code"] is not None:
+                    if "code" in self._error_dict:
                         self.code = self._error_dict["code"]
                     
-                    if self._error_dict["error"] is not None:
+                    if "error" in self._error_dict:
                         self.error = self._error_dict["error"]
                     
-                    if self._error_dict["error_description"] is not None:
+                    if "error_description" in self._error_dict:
                         self.error_description = self._error_dict["error_description"]
                 
                     super().__init__("Server returned {}, with message: {}".format(data.status_code, self.message))
