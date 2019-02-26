@@ -7,6 +7,7 @@ import requests
 from idfy_sdk import urls as urls
 from idfy_sdk.idfy_configuration import IdfyConfiguration as config
 from idfy_sdk.services.identification_service import IdentificationService
+from idfy_sdk.infrastructure.idfy_exception import IdfyException
 
 config.BaseUrl = urls.TestBaseUrl   #No option to dynamically set the port for the mock server yet.
 config.OAuthBaseUrl = urls.TestBaseUrl
@@ -22,7 +23,7 @@ try:
 except(requests.exceptions.ConnectionError) as e:
     raise(requests.exceptions.ConnectionError("Couldn't connect to mock server. Are you sure the mock server is currently running?")) from e
 except(Exception) as e:
-    raise(Exception("An unexpected error occurred while trying to connect to the mock server")) from e
+    raise(IdfyException("An unexpected error occurred while trying to connect to the mock server")) from e
 
 #else:
 #    if not result.status_code == 200 :
