@@ -153,8 +153,8 @@ def __deserialize_model(data, klass):
 def __deserialize_file(response):
     """Deserializes body to file 
 
-    More specifically it just returns a pointer to the binaty content
-    of the response so the user can decide what do do with the data.
+    More specifically it just returns a pointer to the binary content
+    of the response, so the user can decide what do do with the data.
     """
 
     return response.content
