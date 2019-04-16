@@ -11,7 +11,7 @@ class TestSignature(BaseTest):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.signature_service = idfy_sdk.services.SignatureService()
+        cls.signature_service = idfy_sdk.SignatureService()
 
     def test_get_document(self):
         data = self.signature_service.get_document('123')
@@ -217,7 +217,7 @@ class TestSignatureAsync(BaseTest):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.signature_service = idfy_sdk.services.SignatureService()
+        cls.signature_service = idfy_sdk.SignatureService()
 
     def setUp(self):
         super().setUp()
