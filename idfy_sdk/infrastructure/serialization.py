@@ -2,6 +2,7 @@ import datetime
 import json   
 import re
 import typing
+import inspect
 
 #import idfy_sdk.models
 from idfy_sdk.infrastructure.idfy_exception import IdfyException
@@ -46,7 +47,8 @@ def __deserialize(data, klass):
     if data is None:
         return None
 
-    if type(klass) == typing._GenericAlias:
+    #if type(klass) == typing._GenericAlias:
+    if inspect.getmodule(klass) == typing:
         if str(klass).startswith("typing.List"):
             sub_kls = klass.__dict__['__args__'][0]
         elif str(klass).startswith("typing.Dict"):
