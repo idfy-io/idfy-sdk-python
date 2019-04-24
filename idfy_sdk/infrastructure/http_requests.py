@@ -4,7 +4,7 @@ import requests
 from idfy_sdk.idfy_configuration import IdfyConfiguration as config
 from idfy_sdk.infrastructure.idfy_exception import IdfyException
 
-def Get(url, token, params=None) -> "http-response" :
+def Get(url, token, params=None):
     response = requests.get(url, headers = Headers(token), params = params)
 
     if response.ok:

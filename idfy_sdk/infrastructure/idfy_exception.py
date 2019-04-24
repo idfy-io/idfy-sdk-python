@@ -2,7 +2,7 @@ import json
 
 import requests
 
-from idfy_sdk.infrastructure.serialization import deserialize
+#from idfy_sdk.infrastructure.serialization import deserialize
 
 class IdfyException(Exception):
     """This is a custom exception defined in the Idfy SDK

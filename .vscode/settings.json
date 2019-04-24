@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "C:\\Users\\EivindStorsveenBerg\\.virtualenvs\\idfy-sdk-python-UCUx3sXW\\Scripts\\python.exe"
+    "python.pythonPath": "C:\\Users\\EivindStorsveenBerg\\.virtualenvs\\idfy-sdk-python-UCUx3sXW\\Scripts\\python.exe",
+    "python.linting.pylintEnabled": true
 }

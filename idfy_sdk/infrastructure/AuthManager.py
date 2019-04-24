@@ -8,6 +8,7 @@ from idfy_sdk.infrastructure.serialization import deserialize
 from idfy_sdk.infrastructure import http_requests as http
 from idfy_sdk.infrastructure.idfy_exception import IdfyException
 from idfy_sdk import urls as urls
+from idfy_sdk.infrastructure import models as models
 
 
 def Authorize():
@@ -36,7 +37,7 @@ def AuhorizeWithData(clientId, clientSecret, scopes):
     basicAuth = HTTPBasicAuth(clientId, clientSecret)
     url = config.OAuthBaseUrl + urls.OAuthTokens
     try:
-        token = deserialize((http.Post(url, data=formData, auth=basicAuth)), 'OAuthToken')
+        token = deserialize((http.Post(url, data=formData, auth=basicAuth)), models.OAuthToken)
     except (Exception) as e:
         raise Exception("An error occurred while fetching the Oauth token.") from e
 

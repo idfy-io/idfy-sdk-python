@@ -6,7 +6,7 @@ import requests
 
 from idfy_sdk import urls as urls
 from idfy_sdk.idfy_configuration import IdfyConfiguration as config
-from idfy_sdk.services.identification_service import IdentificationService
+from idfy_sdk.services.identification.identification_service import IdentificationService
 from idfy_sdk.infrastructure.idfy_exception import IdfyException
 
 config.BaseUrl = urls.TestBaseUrl   #No option to dynamically set the port for the mock server yet.

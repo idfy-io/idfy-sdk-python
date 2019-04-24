@@ -1,8 +1,11 @@
 import datetime
 import json   
 import re
+import typing
+import inspect
 
-import idfy_sdk.models
+#import idfy_sdk.models
+from idfy_sdk.infrastructure.idfy_exception import IdfyException
 
 PRIMITIVE_TYPES = (float, bool, bytes, str, int)
 NATIVE_TYPES_MAPPING = {
@@ -44,6 +47,17 @@ def __deserialize(data, klass):
     if data is None:
         return None
 
+    #if type(klass) == typing._GenericAlias:
+    if inspect.getmodule(klass) == typing:
+        if str(klass).startswith("typing.List"):
+            sub_kls = klass.__dict__['__args__'][0]
+        elif str(klass).startswith("typing.Dict"):
+            sub_kls = klass.__dict__['__args__'][0]
+        else:
+            raise IdfyException("Internal deserialization error")
+        return [__deserialize(sub_data, sub_kls) for sub_data in data]
+         
+
     if type(klass) == str:
         if klass.startswith('list['):
             sub_kls = re.match('list\[(.*)\]', klass).group(1)  #pylint: disable=W1401
@@ -58,8 +72,9 @@ def __deserialize(data, klass):
         # convert str to class
         if klass in NATIVE_TYPES_MAPPING:
             klass = NATIVE_TYPES_MAPPING[klass]
-        else:
-            klass = getattr(idfy_sdk.models, klass)
+        #else:
+        #    klass = getattr(idfy_sdk.models, klass) # Her kan jeg kansje enten sette inn en loop som går gjennom modellene til alle APIene, eller referere til calling object for å finne ut hvilken service det er som sender requesten.
+        #    # Eller kanskje jeg bare skal fjerne funkjonaliteten for å sende inn modellnavnet som en string? Jeg burde jo bruke en faktisk objekt-refereanse uansett. Problemet oppstår hvos noe av koden bruker strenger internt.
 
     if klass in PRIMITIVE_TYPES:
         return __deserialize_primitive(data, klass)
@@ -128,7 +143,6 @@ def __deserialize_model(data, klass):
     """
     Deserializes list or dict to model.
     """
-
     if not klass.swagger_types and not hasattr(klass,
                                                 'get_real_child_model'):
         return data
@@ -153,8 +167,8 @@ def __deserialize_model(data, klass):
 def __deserialize_file(response):
     """Deserializes body to file 
 
-    More specifically it just returns a pointer to the binaty content
-    of the response so the user can decide what do do with the data.
+    More specifically it just returns a pointer to the binary content
+    of the response, so the user can decide what do do with the data.
     """
 
     return response.content

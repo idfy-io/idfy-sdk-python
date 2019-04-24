@@ -16,7 +16,7 @@ setuptools.setup(
     description="SDK for using the Idfy API in Python",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/Signereno/Python-SDK",
+    url="https://github.com/idfy-io/idfy-sdk-python",
     #package_dir={'':'./src'},
     #packages=['idfy_sdk'],
     packages=setuptools.find_packages(exclude=['test', 'test.*']),
