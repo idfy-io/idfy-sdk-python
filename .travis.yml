@@ -7,7 +7,7 @@ python:
 
 env:
   global:
-    - IDFY_MOCK_SERVER_VERSION=0.0.4
+    - IDFY_MOCK_SERVER_VERSION=0.0.8
 
 before_install:
   # Download, unpack and run the Idfy Mock Server
