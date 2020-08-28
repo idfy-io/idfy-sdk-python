@@ -27,8 +27,8 @@ If you're developing on a Linux-based system, remember to replace "python" with 
 We know that many of our customers have very talented in-house developers, and we want to encourage our customers to make any changes they want to make the SDK perfectly suit their needs. Please feel free to send any potential questions or suggestions for improvement to our support channels listed below. We appreciate the feedback.
 
 ## Documentation
-- [Idfy REST API Reference](https://developer.idfy.io/api)
-- [Idfy Developer Documentation](https://developer.idfy.io/docs)
+- [REST API Reference](https://developer.signicat.io/apis/overview.html)
+- [Developer Documentation](https://developer.idfy.io/docs)
 
 
 ## Sample Usage
